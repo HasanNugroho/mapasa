@@ -7,10 +7,8 @@
 @stop
 
 @section('content')
-<div class="row">
-    <div class="col-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-header">
                 <div class="text-right">
                     <button type="button" class="btn btn-success btn-md" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
@@ -40,7 +38,7 @@
                                 <td>
                                     <div class="d-flex">
                                         <a href="#" class="btn btn-warning btn-sm btn-edit" data-id="{{$a->id}}">Edit</a>
-                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$a->id}}">Hapus</a>
+                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus delete-confirm" data-id="{{$a->id}}">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
@@ -51,8 +49,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 {{-- modal --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -155,6 +151,7 @@
                 $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('hide')
                 window.location.assign('/dashboard/agenda')
+                Swal.fire('Success','Agenda berhasil ditambahkan','success')
             },
             error: function (err) {
                 console.log(err.responseJSON)
@@ -172,7 +169,7 @@
             url: '/dashboard/agenda/' + id + '/hapus',
             method: "GET",
             success: function (data) {
-                // console.log(data)
+                Swal.fire('Success','Agenda berhasil dihapus','success');
             },
             error: function (error) {
                 console.log(error)

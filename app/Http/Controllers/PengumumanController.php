@@ -23,6 +23,8 @@ class PengumumanController extends Controller
             'pengumuman' => $request->pengumuman,
             'author' => $request->author
         ]);
+        
+        session()->flash('message', "Swal.fire('Success','Blog berhasil ditambah','success')");
         return redirect()->back();
     }
 

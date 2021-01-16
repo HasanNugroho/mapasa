@@ -38,7 +38,7 @@
                                 <td>
                                     <div class="d-flex">
                                         <a href="#" class="btn btn-warning btn-sm btn-edit" data-id="{{$p->id}}">Edit</a>
-                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$p->id}}">Hapus</a>
+                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus delete-confirm" data-id="{{$p->id}}">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
@@ -150,6 +150,7 @@
                 $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('hide')
                 window.location.assign('/dashboard/pengumuman')
+                Swal.fire('Success','Blog berhasil diupdate','success')
             },
             error: function (err) {
                 console.log(err.responseJSON)
@@ -163,7 +164,7 @@
             url: '/dashboard/pengumuman/' + id + '/hapus',
             method: "GET",
             success: function (data) {
-                // console.log(data)
+                Swal.fire('Success','Blog berhasil dihapus','success')
             },
             error: function (error) {
                 console.log(error)

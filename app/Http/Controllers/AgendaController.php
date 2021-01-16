@@ -26,6 +26,7 @@ class AgendaController extends Controller
             'jam' => $request->jam,
             'tanggal' => $request->tanggal,
         ]);
+        session()->flash('message', "Swal.fire('Success','Agenda berhasil ditambahkan','success')");
         return redirect()->back();
     }
     // get data to edit
@@ -47,6 +48,7 @@ class AgendaController extends Controller
             'jam' => $request->jam,
             'tanggal' => $request->tanggal,
         ]);
+        
     }
     // hapus data
     public function hapus($id)

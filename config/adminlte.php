@@ -282,7 +282,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Jumbotron',
-                    'url'  => 'dashboard/manage/jumbotron',
+                    'url'  => 'dashboard/web/jumbotron',
                     'icon' => 'fas fa-fw fa-desktop',
                     'icon_color'  => 'blue',
                 ],
@@ -302,7 +302,7 @@ return [
         ['header' => 'SUPEADMIN'],
         [
             'text'        => 'Admin Manage',
-            'url'         => 'dashboard/superadmin/admin',
+            'url'         => 'dashboard/admin/manage',
             'icon'        => 'fas fa-fw fa-tools',
             'icon_color'  => 'dark',
         ],

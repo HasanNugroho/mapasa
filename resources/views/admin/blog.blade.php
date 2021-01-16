@@ -42,7 +42,7 @@
                                 <td>
                                     <div class="d-flex">
                                         <a href="/dashboard/blog/{{$e->id}}/edit" class="btn btn-warning btn-sm btn-edit" data-id="{{$e->id}}">Edit</a>
-                                        <a href="#" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$e->id}}">Hapus</a>
+                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus delete-confirm" data-id="{{$e->id}}">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
@@ -154,7 +154,7 @@
             url: '/dashboard/blog/' + id + '/hapus',
             method: "GET",
             success: function (data) {
-                // console.log(data)
+                Swal.fire('Success','Blog berhasil dihapus','success'
             },
             error: function (error) {
                 console.log(error)

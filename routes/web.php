@@ -7,6 +7,8 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +25,19 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboardstart')->middleware(['auth', 'VisitorCount']); //general
 
 Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard'], function(){
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('dashboardstart');
+});
+
+// Khusus Superadmin
+Route::group(['middleware' => ['auth', 'Superadmin'], 'prefix' => '/dashboard/admin/manage/'], function () {
+    Route::get('', [AdminController::class, 'manage'])->name('admin.manage');
+    Route::post('store', [AdminController::class, 'store'])->name('add.admin');
+    Route::get('{id}/edit', [AdminController::class, 'edit'])->name('edit.admin');
+    Route::post('update', [AdminController::class, 'update2'])->name('update.admin');
+    Route::get('{id}/delete', [AdminController::class, 'delete'])->name('delete.admin');
 });
 
 // Admin Agenda Mendatang
@@ -71,4 +83,15 @@ Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/pengumuman'], fu
     Route::get('/{id}/edit', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
     Route::post('/{id}/update', [PengumumanController::class, 'update'])->name('pengumuman.update');
     Route::get('/{id}/hapus', [PengumumanController::class, 'hapus'])->name('pengumuman.hapus');
+});
+
+// Admin Profile
+Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/profile'], function(){
+    Route::get('', [AdminController::class, 'index'])->name('profile');
+    Route::post('/update', [AdminController::class, 'update'])->name('profile.update');
+});
+
+// Admin web manage jumbotron
+Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/web/jumbotron'], function(){
+    Route::get('', [ManageController::class, 'index'])->name('jumbotron');
 });

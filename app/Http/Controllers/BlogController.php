@@ -35,6 +35,7 @@ class BlogController extends Controller
             'slug' => Str::slug($request->title),
             'artikel' => $request->artikel,
         ]);
+        session()->flash('message', "Swal.fire('Success','Blog berhasil ditambahkan','success')");
         return redirect()->back();
     }
     // get data to update
@@ -77,7 +78,8 @@ class BlogController extends Controller
         $update['slug'] = Str::slug($request->title);
 
         blog::where('id', $request->id)->update($update);
-
+        
+        session()->flash('message', "Swal.fire('Success','Blog berhasil diupdate','success')");
         return redirect('/dashboard/blog');
     }
     public function hapus($id)

@@ -42,7 +42,7 @@
                                 <td>
                                     <div class="d-flex">
                                         <a href="/dashboard/kegiatan/{{$k->id}}/edit" class="btn btn-warning btn-sm btn-edit" data-id="{{$k->id}}">Edit</a>
-                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$k->id}}">Hapus</a>
+                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus delete-confirm" data-id="{{$k->id}}">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
