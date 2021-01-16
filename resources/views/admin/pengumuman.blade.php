@@ -20,32 +20,34 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Pengumuman</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($pengumuman as $key => $p)
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Pengumuman</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pengumuman as $key => $p)
                             <tr>
                                 <th scope="row">{{$pengumuman->firstItem()+$key}}</th>
                                 <td>{{$p->pengumuman}}</td>
                                 <td>{{$p->author}}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="#" class="btn btn-warning btn-sm btn-edit" data-id="{{$p->id}}">Edit</a>
-                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus delete-confirm" data-id="{{$p->id}}">Hapus</a>
+                                        <a href="#" class="btn btn-warning btn-sm btn-edit"
+                                            data-id="{{$p->id}}">Edit</a>
+                                        <a href="#" class="ml-2 btn btn-danger btn-sm btn-hapus"
+                                            data-id="{{$p->id}}">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                    {{$pengumuman->links('vendor.pagination.simple-bootstrap-4')}}
-                  </table>
+                            @endforeach
+                        </tbody>
+                        {{$pengumuman->links('vendor.pagination.simple-bootstrap-4')}}
+                    </table>
                 </div>
             </div>
         </div>
@@ -74,7 +76,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>
-            </form>
+                </form>
             </div>
         </div>
     </div>
@@ -150,7 +152,7 @@
                 $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('hide')
                 window.location.assign('/dashboard/pengumuman')
-                Swal.fire('Success','Blog berhasil diupdate','success')
+                Swal.fire('Success', 'Blog berhasil diupdate', 'success')
             },
             error: function (err) {
                 console.log(err.responseJSON)
@@ -160,14 +162,27 @@
     })
     $('.btn-hapus').on('click', function () {
         let id = $(this).data('id')
-        $.ajax({
-            url: '/dashboard/pengumuman/' + id + '/hapus',
-            method: "GET",
-            success: function (data) {
-                Swal.fire('Success','Blog berhasil dihapus','success')
-            },
-            error: function (error) {
-                console.log(error)
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: "Data yang dihapus tidak bisa dikembalikan!!!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/dashboard/pengumuman/' + id + '/hapus',
+                    method: "GET",
+                    success: function (data) {
+                        window.location.assign('/dashboard/pengumuman')
+                        Swal.fire('Success', 'Pengumuman berhasil dihapus', 'success')
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
             }
         })
     })

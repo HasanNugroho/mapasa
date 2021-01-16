@@ -118,33 +118,27 @@ class AdminController extends Controller
     // update user
     public function update2(Request $request)
     {
-        // dd($request);
         $request->validate([
             'email' => 'required|email',
             'name' => 'required',
+            'role' => 'required'
         ]);
 
         $data = [];
-        if($request->role){
-            $request->validate([
-                'role' => 'required'
-            ]);
-
-            $data = [
-                'role' => request('role'),
-            ];
-        }
         if($request->password){
             $request->validate([
                 'old_password' => 'required',
                 'password' => 'required'
             ]);
-
-            $data = [
-                'email' => request('email'),
-                'name' => request('name'),
-            ];
         }
+        
+        $data = [
+            'email' => request('email'),
+            'name' => request('name'),
+            'role' => request('role'),
+        ];
+        // dd($data);
+        
         $password = User::where('id', $request->id)->first();
         if ($request->password) {
             if (Hash::check(request('old_password'), $password->password)) {
@@ -159,8 +153,8 @@ class AdminController extends Controller
         }else {
             User::where('id', $request->id)->update($data);
 
-            // session()->flash('message', "Swal.fire('Success','Updated profil','success')");
-            return back()->with("Swal.fire('Success','Updated profil','success')");
+            session()->flash('message', "Swal.fire('Success','Updated profil','success')");
+            return back();
         }
     }
 
@@ -170,6 +164,6 @@ class AdminController extends Controller
         $delete = User::where('id', $id)->first();
             Storage::delete($delete);
         $delete->delete();
-        return json_encode(array('statusCode'=>200));
+        // return json_encode(array('statusCode'=>200));
     }
 }

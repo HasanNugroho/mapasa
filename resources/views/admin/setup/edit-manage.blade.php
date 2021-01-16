@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Kegiatan')
+@section('title', 'Edit ', $keterangan)
 
 @section('content_header')
-<h1 class="m-0 text-dark">Edit kegiatan</h1>
+<h1 class="m-0 text-dark">Edit {{$keterangan}}</h1>
 @stop
 
 @section('content')
@@ -11,49 +11,35 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{route('update.kegiatan')}}" method="post" enctype="multipart/form-data">
+                <form action="{{$route}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" value="{{$data->id}}" id="data_id" name="id">
+                    <input type="hidden" value="{{$jumbotron->id}}"  name="id">
                     <div class="form-group">
                         <div class="row">
-                            <div class="mb-3 col-mb-12">
-                                <label for="kegiatan" class="form-label">Kegiatan</label>
-                                <input type="text" class="form-control" id="kegiatan" value="{{$data->kegiatan}}" name="kegiatan">
-                            </div>
-                            <div class="mb-3 col-mb-12">
-                                <label for="exampleFormControlTextarea1" class="form-label">Keterangan Kegiatan</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" value="{{$data->keterangan}}" name="keterangan"
-                                    rows="3">{{$data->keterangan}}</textarea>
-                            </div>
-                            <div class="mb-3 col-6">
-                                <label for="tanggal" class="form-label">Tanggal</label>
-                                <input type="date" class="form-control" value="{{$data->tanggal}}" name="tanggal" id="tanggal">
-                            </div>
-                            <div class="mb-3 col-6">
-                                <label for="jam" class="form-label">Waktu</label>
-                                <input type="time" class="form-control" id="jam" value="{{$data->jam}}" name="jam">
-                            </div>
                             <div class="form-group">
                                 <div class="text-center">
-                                    <img src="{{Storage::url($data->foto_utama)}}" alt="Image Preview" style="max-width: 400px; height: auto;"
+                                    <img src="{{Storage::url($jumbotron->gambar)}}" alt="Image Preview" style="max-width: 400px; height: auto;"
                                         id="preview">
                                 </div>
                                 <div class="custom-file mt-3">
-                                    <input id="gambar" class="custom-file-input" type="file" name="foto_utama"
+                                    <input id="gambar" class="custom-file-input" type="file" name="gambar"
                                         onchange="loadFile(event)">
-                                    <label for="my-input" class="custom-file-label" id="labelimg">{{$data->foto_utama}}</label>
+                                    <label for="my-input" class="custom-file-label" id="labelimg">{{$jumbotron->gambar}}</label>
                                 </div>
                             </div>
                             <div class="mb-3 col-mb-12">
-                                <label for="link" class="form-label">Link Foto</label>
-                                <input type="text" class="form-control" id="link" value="{{$data->link}}" name="link">
-                                <div id="emailHelp" class="form-text">Link foto (Google Drive atau could storage lainnya)</div>
+                                <label for="judul" class="form-label">Judul</label>
+                                <input type="text" class="form-control" id="judul" value="{{$jumbotron->judul}}" name="judul">
+                            </div>
+                            <div class="mb-3 col-mb-12">
+                                <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi" rows="3">{{$jumbotron->deskripsi}}</textarea>
                             </div>
                         </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
+                    </div>                
                 </form>
             </div>
         </div>

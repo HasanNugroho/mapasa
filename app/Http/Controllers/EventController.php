@@ -33,7 +33,7 @@ class EventController extends Controller
             'slug' => Str::slug($request->event),
             'deskripsi' => $request->deskripsi,
         ]);
-        session()->flash('message', "Swal.fire('Success','Blog berhasil ditambahkan','success')");
+        session()->flash('message', "Swal.fire('Success','Event berhasil ditambahkan','success')");
         return redirect()->back();
     }
     public function edit($id)
@@ -74,7 +74,7 @@ class EventController extends Controller
 
         event::where('id', $request->id)->update($update);
         
-        session()->flash('message', "Swal.fire('Success','Blog berhasil diupdate','success')");
+        session()->flash('message', "Swal.fire('Success','Event berhasil diupdate','success')");
         return redirect('/dashboard/event');
     }
     public function hapus($id)

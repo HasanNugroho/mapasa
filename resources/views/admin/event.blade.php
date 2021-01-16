@@ -36,7 +36,7 @@
                                 <td>
                                     <div class="d-flex">
                                         <a href="/dashboard/event/{{$e->id}}/edit" class="btn btn-warning btn-sm btn-edit" data-id="{{$e->id}}">Edit</a>
-                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus delete-confirm" data-id="{{$e->id}}">Hapus</a>
+                                        <a href="#" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$e->id}}">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
@@ -173,14 +173,27 @@
 <script>
     $('.btn-hapus').on('click', function () {
         let id = $(this).data('id')
-        $.ajax({
-            url: '/dashboard/event/' + id + '/hapus',
-            method: "GET",
-            success: function (data) {
-                Swal.fire('Success','Blog berhasil diupdate','success'
-            },
-            error: function (error) {
-                console.log(error)
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: "Data yang dihapus tidak bisa dikembalikan!!!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/dashboard/event/' + id + '/hapus',
+                    method: "GET",
+                    success: function (data) {
+                        window.location.assign('/dashboard/event')
+                        Swal.fire('Success', 'Event berhasil dihapus', 'success')
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
             }
         })
     })

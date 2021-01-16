@@ -11,6 +11,6 @@
     </div>
     <div class="mb-3">
         <label for="tanggal" class="form-label">Tanggal</label>
-        <input type="date" class="form-control" value="{{$data->tanggal}}" name="tanggal" id="tanggal">
+        <input type="date" class="form-control" value="{{$data->tanggal->isoFormat('yyyy-MM-dd')}}" name="tanggal" id="tanggal">
     </div>
 </div>

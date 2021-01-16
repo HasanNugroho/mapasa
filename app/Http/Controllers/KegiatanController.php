@@ -44,7 +44,7 @@ class KegiatanController extends Controller
             'tanggal' => $request->tanggal,
         ]);
 
-        session()->flash('message', "Swal.fire('Success','Blog berhasil ditambah','success')");
+        session()->flash('message', "Swal.fire('Success','Kegiatan berhasil ditambah','success')");
         return redirect()->back();
     }
     // ambil data untuk di edit
@@ -92,7 +92,7 @@ class KegiatanController extends Controller
 
         kegiatan::where('id', $request->id)->update($update);
 
-        session()->flash('message', "Swal.fire('Success','Blog berhasil diupdate','success')");
+        session()->flash('message', "Swal.fire('Success','Kegiatan berhasil diupdate','success')");
         return redirect('/dashboard/kegiatan');
     }
     // hapus
@@ -102,7 +102,7 @@ class KegiatanController extends Controller
         Storage::delete($delete->foto_utama);
         $delete->delete();
 
-        session()->flash('message', "Swal.fire('Success','Blog berhasil dihapus','success')");
+        session()->flash('message', "Swal.fire('Success','Kegiatan berhasil dihapus','success')");
         return redirect()->back();
     }
 }

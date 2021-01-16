@@ -36,13 +36,13 @@
                             </fieldset>
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="exampleInputPassword1" class="form-label">Password Lama</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="old_password">
+                            <label for="pw1" class="form-label">Password Lama</label>
+                            <input type="password" class="form-control" id="pw1" name="old_password">
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="exampleInputPassword1" class="form-label d-flex">Password
+                            <label for="pw2" class="form-label d-flex">Password
                                 Baru</label>
-                            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" name="password" class="form-control" id="pw2">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

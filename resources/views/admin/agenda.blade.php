@@ -38,7 +38,7 @@
                                 <td>
                                     <div class="d-flex">
                                         <a href="#" class="btn btn-warning btn-sm btn-edit" data-id="{{$a->id}}">Edit</a>
-                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus delete-confirm" data-id="{{$a->id}}">Hapus</a>
+                                        <a href="#" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$a->id}}">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
@@ -151,28 +151,37 @@
                 $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('hide')
                 window.location.assign('/dashboard/agenda')
-                Swal.fire('Success','Agenda berhasil ditambahkan','success')
+                Swal.fire('Success','Agenda berhasil diupdate','success')
             },
             error: function (err) {
                 console.log(err.responseJSON)
-                let err_log = err.responseJSON.errors;
-                if(err.status == 422){
-                    $('#modal-edit').find('[name="kontak"]').prev().html('<span style="color: red;">Kontak | '+err_log.kontak[0]+'</span>')
-                }
             }
 
         })
     })
     $('.btn-hapus').on('click', function () {
         let id = $(this).data('id')
-        $.ajax({
-            url: '/dashboard/agenda/' + id + '/hapus',
-            method: "GET",
-            success: function (data) {
-                Swal.fire('Success','Agenda berhasil dihapus','success');
-            },
-            error: function (error) {
-                console.log(error)
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: "Data yang dihapus tidak bisa dikembalikan!!!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/dashboard/agenda/' + id + '/hapus',
+                    method: "GET",
+                    success: function (data) {
+                        window.location.assign('/dashboard/agenda')
+                        Swal.fire('Success', 'Agenda berhasil dihapus', 'success')
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
             }
         })
     })

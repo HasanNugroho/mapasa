@@ -7,6 +7,7 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManageController;
 /*
@@ -93,5 +94,19 @@ Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/profile'], funct
 
 // Admin web manage jumbotron
 Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/web/jumbotron'], function(){
-    Route::get('', [ManageController::class, 'index'])->name('jumbotron');
+    Route::get('', [ManageController::class, 'index_jumbotron'])->name('jumbotron');
+    Route::post('/store', [ManageController::class, 'store_jumbotron'])->name('add.jumbotron');
+    Route::get('/edit/{id}', [ManageController::class, 'edit_jumbotron'])->name('edit.jumbotron');
+    Route::post('/update', [ManageController::class, 'update_jumbotron'])->name('update.jumbotron');
+    Route::get('/delete/{id}', [ManageController::class, 'delete_jumbotron'])->name('delete.jumbotron');
+});
+
+// Admin galeri
+Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/galeri'], function(){
+    Route::get('', [GaleriController::class, 'index'])->name('galeri');
+    Route::post('/store', [GaleriController::class, 'store'])->name('add.galeri');
+    Route::get('/see/{id}', [GaleriController::class, 'see'])->name('see.galeri');
+    Route::get('/{id}/hapus', [GaleriController::class, 'delete'])->name('hapus.galeri');
+    Route::get('/{id}/edit', [GaleriController::class, 'edit'])->name('edit.galeri');
+    Route::post('/update', [GaleriController::class, 'update'])->name('update.galeri');
 });
