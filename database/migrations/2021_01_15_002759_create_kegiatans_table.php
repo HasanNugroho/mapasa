@@ -17,8 +17,8 @@ class CreateKegiatansTable extends Migration
             $table->id();
             $table->string('slug');
             $table->string('kegiatan');
+            $table->string('link');
             $table->text('keterangan');
-            $table->text('foto');
             $table->string('foto_utama');
             $table->string('tanggal');
             $table->time('jam');

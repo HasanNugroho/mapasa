@@ -37,9 +37,11 @@
                                 <td>{{$a->kegiatan}}</td>
                                 <td>{{$a->jam}}</td>
                                 <td>{{$a->tanggal->isoFormat('dddd, Do MMMM YYYY')}}</td>
-                                <td class="d-flex">
-                                    <a href="#" class="btn btn-warning btn-sm btn-edit" data-id="{{$a->id}}">Edit</a>
-                                    <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$a->id}}">Hapus</a>
+                                <td>
+                                    <div class="d-flex">
+                                        <a href="#" class="btn btn-warning btn-sm btn-edit" data-id="{{$a->id}}">Edit</a>
+                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$a->id}}">Hapus</a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

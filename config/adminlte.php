@@ -16,7 +16,7 @@ return [
 
     'title' => 'MAPASA',
     'title_prefix' => '',
-    'title_postfix' => 'Mapasa',
+    'title_postfix' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -238,7 +238,7 @@ return [
             'text'        => 'Dashboard',
             'url'         => 'dashboard',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
-            'icon_color'  => 'light',
+            'icon_color'  => 'dark',
         ],
         [
             'text'        => 'Agenda Mendatang',
@@ -262,7 +262,7 @@ return [
             'text'        => 'Event',
             'url'         => 'dashboard/event',
             'icon'        => 'fas fa-fw fa-rocket',
-            'icon_color'  => 'dark',
+            'icon_color'  => 'red',
         ],
         [
             'text'        => 'Blog',
@@ -281,8 +281,10 @@ return [
             'icon'    => 'fas fa-fw fa-cog',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Jumbotron',
+                    'url'  => 'dashboard/manage/jumbotron',
+                    'icon' => 'fas fa-fw fa-desktop',
+                    'icon_color'  => 'blue',
                 ],
                 [
                     'text' => 'level_one',

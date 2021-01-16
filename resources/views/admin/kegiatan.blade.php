@@ -39,9 +39,11 @@
                                 <td>{{$k->kegiatan}}</td>
                                 <td>{{$k->jam}}</td>
                                 <td>{{$k->tanggal->isoFormat('dddd, Do MMMM YYYY')}}</td>
-                                <td class="d-flex">
-                                    <a href="#" class="btn btn-warning btn-sm btn-edit" data-id="{{$k->id}}">Edit</a>
-                                    <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$k->id}}">Hapus</a>
+                                <td>
+                                    <div class="d-flex">
+                                        <a href="/dashboard/kegiatan/{{$k->id}}/edit" class="btn btn-warning btn-sm btn-edit" data-id="{{$k->id}}">Edit</a>
+                                        <a href="" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$k->id}}">Hapus</a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -65,6 +67,17 @@
                 <form action="{{route('add.kegiatan')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
+                        <div class="form-group">
+                            <div class="text-center">
+                                <img src="{{ asset('images') }}/image-preview.png" alt="Image Preview" style="max-width: 400px; height: auto;"
+                                    id="preview">
+                            </div>
+                            <div class="custom-file mt-3">
+                                <input id="gambar" class="custom-file-input" type="file" name="foto_utama"
+                                    onchange="loadFile(event)">
+                                <label for="my-input" class="custom-file-label" id="labelimg">Foto utama</label>
+                            </div>
+                        </div>
                         <div class="mb-3 col-mb-12">
                             <label for="kegiatan" class="form-label">Kegiatan</label>
                             <input type="text" class="form-control" id="kegiatan" name="kegiatan">
@@ -81,31 +94,10 @@
                             <label for="jam" class="form-label">Waktu</label>
                             <input type="time" class="form-control" id="jam" name="jam">
                         </div>
-                        <div class="mb-3">
-                            <label for="foto-utama" class="form-label">Foto utama</label>
-                            <input type="file" class="form-control" id="foto-utama" name="foto_utama">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tali" class="form-label">Foto produk</label>
-                            <div class="input-group control-group increment">
-                                <input type="file" name="foto[]" class="form-control" multiple>
-                                <div class="input-group-btn">
-                                    <button class="btn btn-success btn-tambah" type="button"><i
-                                            class="glyphicon glyphicon-plus"></i>Tambah</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="clone visually-hidden">
-                                <div class="control-group input-group" style="margin-top:10px">
-                                    <input type="file" name="foto[]" class="form-control" multiple>
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-danger btn-kurang" type="button"><i
-                                                class="glyphicon glyphicon-remove"></i>
-                                            Hapus</button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="mb-3 col-mb-12">
+                            <label for="link" class="form-label">Link Foto</label>
+                            <input type="text" class="form-control" id="link" name="link">
+                            <div id="emailHelp" class="form-text">Link foto (Google Drive atau could storage lainnya)</div>
                         </div>
                     </div>
             </div>
@@ -126,7 +118,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Edit Kontak</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="" id="form-edit">
+            <form action="{{route('update.kegiatan')}}" method="POST" id="form-edit">
                 @csrf
                 <div class="modal-body">
 
@@ -155,35 +147,61 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 {{-- script --}}
-{{-- multiple image --}}
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".btn-tambah").click(function () {
-            var html = $(".clone").html();
-            $(".increment").after(html);
-        });
-        $("form").on("click", ".btn-kurang", function () {
-            $(this).parents(".control-group").remove();
-        });
-    });
+{{-- preview img --}}
+<script>
+    function loadFile(event) {
+        //mengubah gambar
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = function () {
+            output.src = reader.result;
+        }
+        //mengubah label
+        var file = document.getElementById('gambar');
+        var output = document.getElementById('preview');
+        var file = document.getElementById('labelimg').innerHTML = file.files[0].name
+    };
+
 </script>
 {{-- ajax --}}
 <script>
-    $('.btn-edit').on('click', function () {
-        let id = $(this).data('id')
-        $.ajax({
-            url: '/dashboard/kegiatan/' + id + '/edit',
-            method: "GET",
-            success: function (data) {
-                // console.log(data)
-                $('#modal-edit').find('.modal-body').html(data)
-                $('#modal-edit').modal('show')
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
-    })
+    // $('.btn-edit').on('click', function () {
+    //     let id = $(this).data('id')
+    //     $.ajax({
+    //         url: '/dashboard/kegiatan/' + id + '/edit',
+    //         method: "GET",
+    //         success: function (data) {
+    //             // console.log(data)
+    //             $('#modal-edit').find('.modal-body').html(data)
+    //             $('#modal-edit').modal('show')
+    //         },
+    //         error: function (error) {
+    //             console.log(error)
+    //         }
+    //     })
+    // })
+    // $('.btn-update').on('click', function (e) {
+    //     e.preventDefault();
+    //     let id = $('#form-edit').find('#data_id').val()
+    //     let formData = $('#form-edit').serialize()
+    //     // console.log(id)
+    //     console.log(formData)
+    //     $.ajax({
+    //         url: '/dashboard/kegiatan/' + id + '/update',
+    //         method: "POST",
+    //         data: formData,
+    //         success: function (data) {
+    //             // console.log(success)
+    //             $('#modal-edit').find('.modal-body').html(data)
+    //             $('#modal-edit').modal('hide')
+    //             window.location.assign('/dashboard/kegiatan')
+    //         },
+    //         error: function (err) {
+    //             console.log('error')
+    //         }
+
+    //     })
+    // })
     $('.btn-hapus').on('click', function () {
         let id = $(this).data('id')
         $.ajax({

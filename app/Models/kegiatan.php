@@ -13,8 +13,8 @@ class kegiatan extends Model
         'kegiatan',
         'keterangan',
         'foto_utama',
-        'foto',
         'jam',
+        'link',
         'tanggal',
         'slug',
     ];

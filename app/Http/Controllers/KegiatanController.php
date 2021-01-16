@@ -22,31 +22,22 @@ class KegiatanController extends Controller
             'keterangan' => 'required',
             'tanggal' => 'required',
             'jam' => 'required',
+            'link' => 'required',
             'foto_utama' => 'required',
-            'foto' => 'required',
-            'foto.*' => 'required'
         ]);
         // dd($request);
 
 
         $data = [];
-        if($request->hasfile('foto'))
-        {
-            foreach($request->file('foto') as $image)
-            {
-                $imgname = Storage::putFile('public/galeri',  $image->path());
-                $data[] = $imgname;  
-            }
-        }
         if($request->hasfile('foto_utama'))
         {
             $fotoutama = Storage::putFile('public/galeri',  $request->foto_utama->path());
         }
         // dd($request);
         kegiatan::create([
-            'foto' => json_encode($data),
             'slug' => Str::slug($request->kegiatan),
             'foto_utama' => $fotoutama,
+            'link' => $request->link,
             'kegiatan' => $request->kegiatan,
             'keterangan' => $request->keterangan,
             'jam' => $request->jam,
@@ -54,19 +45,57 @@ class KegiatanController extends Controller
         ]);
         return redirect()->back();
     }
+    // ambil data untuk di edit
     public function edit($id)
     {
         $data = kegiatan::find($id);
         return view('admin.setup.kegiatan-edit', ['data' => $data]);
+    }
+    // update data
+    public function update(Request $request)
+    {
+        $data = [
+            'kegiatan' => 'required',
+            'keterangan' => 'required',
+            'jam' => 'required',
+            'link' => 'required',
+        ];
+
+        // validasi tanggal
+        if($request->tanggal != null){
+            $data['tanggal'] = 'required';
+        }
+        // validasi foto utama
+        if($request->file('foto_utama')){
+            $data['foto_utama'] = 'required';
+        }
+        $request->validate($data);
+
+        // update tanggal
+        if($request->tanggal){
+            $update['tanggal'] = $request->tanggal;
+        }
+        // update foto utama
+        $targetItem = kegiatan::where('id', $request->id)->first();
+        if($request->file('foto_utama')){
+            Storage::delete($targetItem->foto_utama);
+
+            $fotoutama = Storage::putFile('public/galeri',  $request->foto_utama->path());
+            $update['foto_utama'] = $fotoutama;
+        }
+        $update['kegiatan'] = $request->kegiatan;
+        $update['keterangan'] = $request->keterangan;
+        $update['jam'] = $request->jam;
+        $update['link'] = $request->link;
+
+        kegiatan::where('id', $request->id)->update($update);
+        return redirect('/dashboard/kegiatan');
     }
     // hapus
     public function hapus($id)
     {
         $delete = kegiatan::where('id', $id)->first();
         Storage::delete($delete->foto_utama);
-        foreach(json_decode($delete->foto) as $hapus){
-            Storage::delete($hapus);
-        }
         $delete->delete();
 
         return redirect()->back();
