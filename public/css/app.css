@@ -15,8 +15,35 @@ a {
     margin-left: 1rem;
 }
 
+.card{
+    border-radius: 10px !important;
+}
+
+.bg-abu-abu{
+    background-color: #EEEEEE;
+}
+
+.card-footer{
+    border-radius: 10px !important;
+    /* padding: 4rem auto ; */
+}
+
+.bagian{
+    margin: 5rem 0 !important;
+}
+
+.iconify {
+    width: 30px;
+    height: 30px;
+}
+
+.maps {
+    width: 100%;
+    height: auto;
+}
+
 .text-1 {
-    font-size: 96px;
+    font-size: 90px;
 }
 
 .text-2 {
@@ -31,6 +58,7 @@ a {
 
 .text-4 {
     font-size: 18px;
+    font-weight: 500;
 }
 
 .text-5 {
@@ -43,17 +71,15 @@ a {
 }
 
 .text-link:hover {
-    color: #dd8282;
+    color: #ffffff;
+    opacity: 80%;
+    text-decoration: underline;
 }
 
-.iconify {
-    width: 30px;
-    height: 30px;
-}
-
-.maps {
-    width: 100%;
-    height: auto;
+@media(max-width: 1024px) {
+    .text-1 {
+        font-size: 80px;
+    }
 }
 
 @media(max-width: 960px) {
@@ -70,7 +96,10 @@ a {
     }
 
     .text-2 {
-        font-size: 40px;
+        font-size: 38px;
+    }
+    .text-1 {
+        font-size: 75px;
     }
 }
 
@@ -78,9 +107,11 @@ a {
     .text-3 {
         font-size: 20px;
     }
-
     .text-2 {
         font-size: 36px;
+    }
+    .text-1 {
+        font-size: 70px;
     }
 }
 
@@ -91,6 +122,9 @@ a {
 
     .text-2 {
         font-size: 24px;
+    }
+    .text-1 {
+        font-size: 60px;
     }
 }
 
@@ -105,21 +139,105 @@ a {
     position: relative;
 }
 
+/* hero mobile */
+.hero-mobile{
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.33) 0%, #000000 100%), url(/public/images/hero.JPG);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+    width: 100%;
+}
+/* hero mobile end */
+
 /* Hero end */
 /* Event */
-.card {
+.bayangan {
     box-shadow: 5px 5px #00000036;
 }
 
-.card:hover {
+.bayangan:hover {
     box-shadow: 5px 5px #00000083;
 }
 
 .icon-event {
-    width: 250%;
+    max-width: 250%;
     height: 250%;
     opacity: 25%;
     color: #000000;
 }
-
 /* Event end */
+
+/* Agenda */
+
+/* swipper */
+.swiper-container {
+    width: 85%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+/* swipper end */
+
+/* Agenda end */
+/* kegiatan */
+.img-kegiatan{
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+}
+/* kegiatan end */
+/* Galeri */
+.galeri{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffffad;
+}
+.text-galeri, .galeri:hover{
+    transition: ease-in .5s;
+    opacity: .2;
+}
+.card-img{
+    border-radius: 10px;
+}
+/* Galeri end */
+
+/* kritik */
+.kritik{
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    border: #df4040bb solid 1px;
+    box-shadow: #df4040bb 4px 4px;
+}
+/* kritik end */
+/* 
+@media(max-width: 1024) {
+    
+}
+@media(max-width: 960px) {
+    
+}
+@media(max-width: 720px) {
+
+}
+@media(max-width: 540px) {
+
+} */

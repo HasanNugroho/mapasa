@@ -7,7 +7,7 @@
                 <div class="mt-2">
                     <div class="d-flex align-items-center">
                         <span class="iconify" data-icon="carbon:logo-instagram" data-inline="true"></span>
-                        <a href="" style="color: #ffffff; text-decoration: none;" class="text-5">mapasaofficial</a>
+                        <a href="" class="text-5 text-link">mapasaofficial</a>
                     </div>
                     <div class="d-flex mt-1 align-items-center">
                         <span class="iconify" data-icon="carbon:location" data-inline="true"></span>
@@ -32,6 +32,6 @@
 </div>
 <div class="bg-dark text-light">
     <div class="text-center pt-3 pb-3">
-        <div class="text-4">CopyRIght © 2021 MAPASA</div>
+        <div class="text-5">CopyRIght © 2021 MAPASA</div>
     </div>
 </div>
