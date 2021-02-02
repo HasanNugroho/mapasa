@@ -286,10 +286,6 @@ return [
                     'icon' => 'fas fa-fw fa-desktop',
                     'icon_color'  => 'blue',
                 ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
             ],
         ],
         ['header' => 'account_settings'],
@@ -299,7 +295,7 @@ return [
             'icon'        => 'fas fa-fw fa-user-circle',
             'icon_color'  => 'green',
         ],
-        ['header' => 'SUPEADMIN'],
+        ['header' => 'SUPERADMIN'],
         [
             'text'        => 'Admin Manage',
             'url'         => 'dashboard/admin/manage',

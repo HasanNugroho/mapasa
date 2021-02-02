@@ -1,0 +1,125 @@
+body {
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.ml-auto {
+    margin-left: auto !important;
+}
+
+.ml-1 {
+    margin-left: 1rem;
+}
+
+.text-1 {
+    font-size: 96px;
+}
+
+.text-2 {
+    font-size: 46px;
+    font-weight: 500;
+}
+
+.text-3 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.text-4 {
+    font-size: 18px;
+}
+
+.text-5 {
+    font-size: 16px;
+}
+
+.text-link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.text-link:hover {
+    color: #dd8282;
+}
+
+.iconify {
+    width: 30px;
+    height: 30px;
+}
+
+.maps {
+    width: 100%;
+    height: auto;
+}
+
+@media(max-width: 960px) {
+    .text-5 {
+        font-size: 14px;
+    }
+
+    .text-4 {
+        font-size: 16px;
+    }
+
+    .text-3 {
+        font-size: 20px;
+    }
+
+    .text-2 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 720px) {
+    .text-3 {
+        font-size: 20px;
+    }
+
+    .text-2 {
+        font-size: 36px;
+    }
+}
+
+@media(max-width: 540px) {
+    .text-3 {
+        font-size: 18px;
+    }
+
+    .text-2 {
+        font-size: 24px;
+    }
+}
+
+/* Hero */
+.hero {
+    margin: 8rem 0;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+/* Hero end */
+/* Event */
+.card {
+    box-shadow: 5px 5px #00000036;
+}
+
+.card:hover {
+    box-shadow: 5px 5px #00000083;
+}
+
+.icon-event {
+    width: 250%;
+    height: 250%;
+    opacity: 25%;
+    color: #000000;
+}
+
+/* Event end */
