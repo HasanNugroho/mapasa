@@ -14,6 +14,9 @@ a {
 .ml-1 {
     margin-left: 1rem;
 }
+.ml-2{
+    margin-left: .5rem;
+}
 
 .card{
     border-radius: 10px !important;
@@ -30,6 +33,9 @@ a {
 
 .bagian{
     margin: 5rem 0 !important;
+}
+.bagian-blog{
+    margin: 2.5rem 0;
 }
 
 .iconify {
@@ -64,6 +70,19 @@ a {
 .text-5 {
     font-size: 16px;
 }
+.text-6 {
+    font-size: 14px;
+}
+
+.text-judul-blog{
+    margin-top: 1.5rem;
+    font-size: 30px;
+    font-weight: 500;
+}
+.text-blog{
+    font-size: 16px;
+    line-height: 30px;
+}
 
 .text-link {
     color: #ffffff;
@@ -79,6 +98,9 @@ a {
 @media(max-width: 1024px) {
     .text-1 {
         font-size: 80px;
+    }
+    .text-judul-blog{
+        font-size: 25px;
     }
 }
 
@@ -101,6 +123,9 @@ a {
     .text-1 {
         font-size: 75px;
     }
+    .text-judul-blog{
+        font-size: 25px;
+    }
 }
 
 @media(max-width: 720px) {
@@ -113,9 +138,19 @@ a {
     .text-1 {
         font-size: 70px;
     }
+    .text-judul-blog{
+        font-size: 24px;
+        margin-top: 1rem;
+    }
+    .center-item {
+        top: 30%;
+    }
 }
 
 @media(max-width: 540px) {
+    .bagian-blog{
+        margin: 1.5rem 0;
+    }
     .text-3 {
         font-size: 18px;
     }
@@ -125,6 +160,13 @@ a {
     }
     .text-1 {
         font-size: 60px;
+    }
+    .text-judul-blog{
+        font-size: 20px;
+        margin-top: .5rem;
+    }
+    .center-item {
+        top: 25%;
     }
 }
 
@@ -141,12 +183,27 @@ a {
 
 /* hero mobile */
 .hero-mobile{
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.33) 0%, #000000 100%), url(/public/images/hero.JPG);
+    background: linear-gradient(to right, rgba(57, 106, 252, 0.5), rgba(41, 72, 255, 0.2)), url(/public/images/hero-m.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: auto;
     width: 100%;
+}
+#gradient{
+    background: linear-gradient(to right, rgba(57, 106, 252, 0.5), rgba(41, 72, 255, 0.2));
+}
+.center-item {
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.text-hero{
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -60%);
 }
 /* hero mobile end */
 
@@ -228,6 +285,17 @@ a {
     box-shadow: #df4040bb 4px 4px;
 }
 /* kritik end */
+/* blog */
+.rekomendasi:hover{
+    background-color: #ffffff83;
+}
+.text-link-blog{
+    color: #DF4040;
+}
+.text-link-blog:hover{
+    color: #5e0808;
+}
+/* blog end */
 /* 
 @media(max-width: 1024) {
     

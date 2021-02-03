@@ -24,6 +24,9 @@ use App\Http\Controllers\ManageController;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/blog', function () {
+    return view('blog');
+});
 
 Auth::routes();
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboardstart')->middleware(['auth', 'VisitorCount']); //general

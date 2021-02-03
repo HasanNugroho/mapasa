@@ -19,14 +19,31 @@
 </div>
 
 <div class="d-md-none">
-    <img src="{{asset('images/hero-m.svg')}}" class="hero-mobile" alt="">
+    {{-- <img src="{{asset('images/hero-m.svg')}}" id="gradient" class="hero-mobile" alt="">
+    <div class="text-hero card-img-overlay text-light">
+
+    </div> --}}
+    <div class="hero-utama" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, #ffffff), url(/images/hero-m.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 100%;">
+        <div class="center-item">
+            <div class="text-light">
+                <div class="text-2">Mapasa</div>
+                <div class="text-3">Manunggaling Pemuda Salakan</div>
+                <a href="#" class="btn btn-md btn-primary text-4 mt-4">Selengkapnya</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 {{-- Hero end --}}
 
 {{-- Event --}}
 <div class="container">
-    <div style="margin-bottom: 5rem;">
+    <div class="bagian">
         <div class="text-3 mb-3">Event</div>
         <div class="row">
             <div class="col-md-6 mt-2 mb-2">
@@ -326,7 +343,7 @@
 <div class="container">
     <div class="bagian">
         <div class="kritik">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
                 <div class="text-3">Kritik dan Saran</div>
                 <button type="button" class="btn btn-md btn-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
@@ -343,15 +360,27 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Kritik dan Saran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center">
+                            <label for="exampleInputEmail1" class="form-label ">Nama</label>
+                            <div id="nama" class="form-text ml-2">(optional)</div>
+                        </div>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="nama">
+                    </div>
+                    <div class="mb-3">
+                      <label for="pesan" class="form-label">Kritik dan Saran</label>
+                      <textarea name="" id="pesan" class="form-control" cols="5" rows="5"></textarea>
+                    </div>
+                  </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                <button type="button" class="btn btn-primary">Kirim</button>
             </div>
         </div>
     </div>
