@@ -27,6 +27,12 @@ Route::get('/', function () {
 Route::get('/blog', function () {
     return view('blog');
 });
+Route::get('/semua', function () {
+    return view('semua');
+});
+Route::get('/galeri', function () {
+    return view('galeri');
+});
 
 Auth::routes();
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboardstart')->middleware(['auth', 'VisitorCount']); //general

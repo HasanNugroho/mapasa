@@ -35,7 +35,7 @@
     {{-- swipper --}}
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper('.swiper-container', {
+        var swiper = new Swiper('.swiper-index', {
             slidesPerView: 4,
             // spaceBetween: 10,
             pagination: {
@@ -64,6 +64,26 @@
                 spaceBetween: 10,
                 },
                 '@1.50': {
+                slidesPerView: 4,
+                spaceBetween: 10,
+                },
+            },
+        });
+
+        var swiper = new Swiper('.swiper-galeri', {
+            slidesPerView: 4,
+            spaceBetween: 10,
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'progressbar',
+                clickable: true,
+            },
+            breakpoints: {
+                '@0.50': {
+                slidesPerView: 3,
+                spaceBetween: 10,
+                },
+                '@1.00': {
                 slidesPerView: 4,
                 spaceBetween: 10,
                 },

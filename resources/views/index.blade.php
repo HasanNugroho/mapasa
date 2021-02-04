@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title', 'MAPASA')
 @section('content')
+
+<div class="pengumuman">
+    <marquee  scrolldelay="9" class="text-berjalan text-5">Pengumuman dari pak" hehehehehheheheeheheheheheeheheheheh anu bingung meh nulis opo heheh -by burhan nurhasan nugroho</marquee>
+</div>
+
 {{-- Hero --}}
 <div class="d-none d-md-block">
     <div class="container">
@@ -91,7 +96,7 @@
 <div class="container">
     <div class="bagian">
         <div class="text-3 mb-3">Agenda</div>
-        <div class="swiper-container">
+        <div class="swiper-container swiper-index">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="card card-agenda text-center">
