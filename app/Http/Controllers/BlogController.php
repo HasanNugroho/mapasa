@@ -5,6 +5,7 @@ use App\Models\blog;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -18,7 +19,6 @@ class BlogController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'author' => 'required',
             'artikel' => 'required',
             'foto' => 'required',
         ]);
@@ -31,7 +31,7 @@ class BlogController extends Controller
         blog::create([
             'foto' => $fotoutama,
             'title' => $request->title,
-            'author' => $request->author,
+            'author' => Auth::user()->name,
             'slug' => Str::slug($request->title),
             'artikel' => $request->artikel,
         ]);
@@ -49,7 +49,6 @@ class BlogController extends Controller
     {
         $validasi = ([
             'title' => 'required',
-            'author' => 'required',
         ]);
 
         if ($request->file('foto')) {
@@ -74,7 +73,6 @@ class BlogController extends Controller
         }
 
         $update['title'] = $request->title;
-        $update['author'] = $request->author;
         $update['slug'] = Str::slug($request->title);
 
         blog::where('id', $request->id)->update($update);

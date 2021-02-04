@@ -32,7 +32,7 @@
                         @foreach ($event as $key => $e)
                             <tr>
                                 <th scope="row">{{$event->firstItem()+$key}}</th>
-                                <td>{{$e->event}}</td>
+                                <td>{{$e->nama_event}}</td>
                                 <td>
                                     <div class="d-flex">
                                         <a href="/dashboard/event/{{$e->id}}/edit" class="btn btn-warning btn-sm btn-edit" data-id="{{$e->id}}">Edit</a>
@@ -72,8 +72,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="event">Event</label>
-                        <input type="text" class="form-control" id="event" name="event">
+                        <label for="event">Nama event</label>
+                        <input type="text" class="form-control" id="event" name="nama_event">
                     </div>
                     <div class="form-group">
                         <label for="diskripsi">Deskripsi</label>
@@ -114,6 +114,9 @@
     </div>
 </div>
 {{-- modal edit end --}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 {{-- script --}}
 {{-- multiple image --}}

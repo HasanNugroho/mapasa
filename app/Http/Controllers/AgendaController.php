@@ -20,11 +20,13 @@ class AgendaController extends Controller
             'kegiatan' => 'required',
             'jam' => 'required',
             'tanggal' => 'required',
+            'tempat' => 'required',
         ]);
         agenda::insert([
             'kegiatan' => $request->kegiatan,
             'jam' => $request->jam,
             'tanggal' => $request->tanggal,
+            'tempat' => $request->tempat,
         ]);
         session()->flash('message', "Swal.fire('Success','Agenda berhasil ditambahkan','success')");
         return redirect()->back();
@@ -40,6 +42,7 @@ class AgendaController extends Controller
     {
         $request->validate([
             'kegiatan' => 'required',
+            'tempat' => 'required',
             'jam' => 'required',
             'tanggal' => 'required',
         ]);
@@ -47,6 +50,7 @@ class AgendaController extends Controller
             'kegiatan' => $request->kegiatan,
             'jam' => $request->jam,
             'tanggal' => $request->tanggal,
+            'tempat' => $request->tempat,
         ]);
         
     }

@@ -44,11 +44,6 @@
                                     <label for="my-input" class="custom-file-label" id="labelimg">{{$data->foto_utama}}</label>
                                 </div>
                             </div>
-                            <div class="mb-3 col-mb-12">
-                                <label for="link" class="form-label">Link Foto</label>
-                                <input type="text" class="form-control" id="link" value="{{$data->link}}" name="link">
-                                <div id="emailHelp" class="form-text">Link foto (Google Drive atau could storage lainnya)</div>
-                            </div>
                         </div>
                     </div>
                     <div class="text-right">

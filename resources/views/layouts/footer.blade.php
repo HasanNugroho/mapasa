@@ -1,13 +1,13 @@
 <div class="bg-primary text-light">
     <div class="container">
         <div class="row pt-5 pb-5">
-            <a class="navbar-brand text-3 text-light" href="#">MAPASA</a>
+            <a class="navbar-brand text-3 text-light" href="{{route('landing')}}">MAPASA</a>
             <div class="col-md-5 mt-3">
                 <p class="text-5">MAPASA (Manunggaling Pemuda Salakan) adalah organisasi kepemudaan yang berada di dusun Salakan Selomartai Kalasan Sleman</p>
                 <div class="mt-2">
                     <div class="d-flex align-items-center">
                         <span class="iconify" data-icon="carbon:logo-instagram" data-inline="true"></span>
-                        <a href="" class="text-5 text-link">mapasaofficial</a>
+                        <a href="https://www.instagram.com/mapasaofficial/?hl=id" target="_blank" class="text-5 text-link">mapasaofficial</a>
                     </div>
                     <div class="d-flex mt-1 align-items-center">
                         <span class="iconify" data-icon="carbon:location" data-inline="true"></span>

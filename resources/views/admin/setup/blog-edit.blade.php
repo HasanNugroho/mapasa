@@ -30,10 +30,6 @@
                         <input type="text" class="form-control" value="{{$data->title}}" id="judul" name="title">
                     </div>
                     <div class="form-group">
-                        <label for="author">Author</label>
-                        <input type="text" class="form-control" value="{{$data->author}}" id="author" name="author">
-                    </div>
-                    <div class="form-group">
                         <label for="diskripsi">Artikel</label>
                         <div class="col-md-12">
                             <textarea rows="15" id="konten"

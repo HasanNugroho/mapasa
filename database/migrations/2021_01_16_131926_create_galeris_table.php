@@ -17,6 +17,8 @@ class CreateGalerisTable extends Migration
             $table->id();
             $table->string('kegiatan');
             $table->text('gambar');
+            $table->string('link');
+            $table->string('slug');
             $table->timestamps();
         });
     }

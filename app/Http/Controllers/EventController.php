@@ -18,7 +18,7 @@ class EventController extends Controller
     {
         $request->validate([
             'pamflet' => 'required',
-            'event' => 'required',
+            'nama_event' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -29,7 +29,7 @@ class EventController extends Controller
         // dd($request);
         event::create([
             'pamflet' => $fotoutama,
-            'event' => $request->event,
+            'nama_event' => $request->nama_event,
             'slug' => Str::slug($request->event),
             'deskripsi' => $request->deskripsi,
         ]);
@@ -69,7 +69,7 @@ class EventController extends Controller
             $update['deskripsi'] = $request->deskripsi;
         }
 
-        $update['event'] = $request->event;
+        $update['nama_event'] = $request->nama_event;
         $update['slug'] = Str::slug($request->event);
 
         event::where('id', $request->id)->update($update);

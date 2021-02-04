@@ -10,6 +10,8 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManageController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\FeedbackController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,17 +23,19 @@ use App\Http\Controllers\ManageController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::group(['prefix' => '/'], function(){
+    Route::get('', [FrontendController::class, 'index'])->name('landing');
+    Route::post('saran', [FeedbackController::class, 'store'])->name('saran.store');
+    Route::get('blog/{slug}', [FrontendController::class, 'blog'])->name('blog.front');
+    Route::get('galeri/{slug}', [FrontendController::class, 'galeri'])->name('galeri.front');
+    Route::get('galeri', [FrontendController::class, 'semua_galeri'])->name('galeri.semua');
+    Route::get('blog', [FrontendController::class, 'semua_blog'])->name('blog.semua');
+    Route::get('kegiatan', [FrontendController::class, 'semua_kegiatan'])->name('kegiatan.semua');
+    Route::get('kegiatan/{id}', [FrontendController::class, 'kegiatan'])->name('kegiatan.lihat');
 });
-Route::get('/blog', function () {
-    return view('blog');
-});
+
 Route::get('/semua', function () {
     return view('semua');
-});
-Route::get('/galeri', function () {
-    return view('galeri');
 });
 
 Auth::routes();

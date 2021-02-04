@@ -82,10 +82,6 @@
                         <input type="text" class="form-control" id="judul" name="title">
                     </div>
                     <div class="form-group">
-                        <label for="author">Author</label>
-                        <input type="text" class="form-control" id="author" name="author">
-                    </div>
-                    <div class="form-group">
                         <label for="diskripsi">Artikel</label>
                         <div class="col-md-12">
                             <textarea rows="15" id="konten"
@@ -106,6 +102,9 @@
 {{-- script --}}
 
 <script src="{{asset('/vendor/ckeditor/ckeditor.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
 {{-- text editor --}}
 <script>
     var konten = document.getElementById("konten");

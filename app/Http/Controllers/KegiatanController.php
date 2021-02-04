@@ -22,7 +22,6 @@ class KegiatanController extends Controller
             'keterangan' => 'required',
             'tanggal' => 'required',
             'jam' => 'required',
-            'link' => 'required',
             'foto_utama' => 'required',
         ]);
         // dd($request);
@@ -37,7 +36,6 @@ class KegiatanController extends Controller
         kegiatan::create([
             'slug' => Str::slug($request->kegiatan),
             'foto_utama' => $fotoutama,
-            'link' => $request->link,
             'kegiatan' => $request->kegiatan,
             'keterangan' => $request->keterangan,
             'jam' => $request->jam,
@@ -60,7 +58,6 @@ class KegiatanController extends Controller
             'kegiatan' => 'required',
             'keterangan' => 'required',
             'jam' => 'required',
-            'link' => 'required',
         ];
 
         // validasi tanggal
@@ -88,7 +85,6 @@ class KegiatanController extends Controller
         $update['kegiatan'] = $request->kegiatan;
         $update['keterangan'] = $request->keterangan;
         $update['jam'] = $request->jam;
-        $update['link'] = $request->link;
 
         kegiatan::where('id', $request->id)->update($update);
 

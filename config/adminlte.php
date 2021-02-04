@@ -276,18 +276,18 @@ return [
             'icon'        => 'fas fa-fw fa-bullhorn',
             'icon_color'  => 'pink',
         ],
-        [
-            'text'    => 'Web Manage',
-            'icon'    => 'fas fa-fw fa-cog',
-            'submenu' => [
-                [
-                    'text' => 'Jumbotron',
-                    'url'  => 'dashboard/web/jumbotron',
-                    'icon' => 'fas fa-fw fa-desktop',
-                    'icon_color'  => 'blue',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'Web Manage',
+        //     'icon'    => 'fas fa-fw fa-cog',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Jumbotron',
+        //             'url'  => 'dashboard/web/jumbotron',
+        //             'icon' => 'fas fa-fw fa-desktop',
+        //             'icon_color'  => 'blue',
+        //         ],
+        //     ],
+        // ],
         ['header' => 'account_settings'],
         [
             'text'        => 'Profile',

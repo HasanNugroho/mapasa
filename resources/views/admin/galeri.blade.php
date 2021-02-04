@@ -54,7 +54,7 @@ use Illuminate\Support\Arr;
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Galeri</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -84,6 +84,11 @@ use Illuminate\Support\Arr;
                                 @endforeach
                             </select>
                         </div>
+                        <div class="mb-3 col-mb-12">
+                            <label for="link" class="form-label">Link Foto</label>
+                            <input type="text" class="form-control" id="link" name="link" placeholder="https://youtube.com">
+                            <div id="emailHelp" class="form-text">Link foto (Google Drive atau could storage lainnya)</div>
+                        </div>
                     </div>
             </div>
             <div class="modal-footer">
@@ -107,9 +112,6 @@ use Illuminate\Support\Arr;
                 @csrf
                 <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-update">Update</button>
                 </div>
             </form>
         </div>
@@ -139,6 +141,8 @@ use Illuminate\Support\Arr;
 {{-- modal edit end --}}
 
 {{-- script --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 {{-- preview img --}}
 <script>
     $(function () {
@@ -165,12 +169,10 @@ use Illuminate\Support\Arr;
 <script>
     $('.btn-see').on('click', function () {
         let id = $(this).data('id')
-        console.log(id);
         $.ajax({
             url: '/dashboard/galeri/see/' + id,
             method: "GET",
             success: function (data) {
-                console.log(data)
                 $('#modal-see').find('.modal-body').html(data)
                 $('#modal-see').modal('show')
             },
@@ -185,7 +187,6 @@ use Illuminate\Support\Arr;
             url: '/dashboard/galeri/' + id + '/edit',
             method: "GET",
             success: function (data) {
-                // console.log(data)
                 $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('show')
             },

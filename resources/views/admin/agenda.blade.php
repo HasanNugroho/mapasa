@@ -61,8 +61,8 @@
                 <form action="{{route('add.agenda')}}" method="post">
                     @csrf
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Kegiatan</label>
-                        <input type="text" class="form-control" name="kegiatan" id="exampleFormControlInput1"
+                        <label for="ehe" class="form-label">Kegiatan</label>
+                        <input type="text" class="form-control" name="kegiatan" id="ehe"
                             placeholder="rapat">
                     </div>
                     <div class="mb-3">
@@ -72,6 +72,11 @@
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal</label>
                         <input type="date" class="form-control" name="tanggal" id="tanggal">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Tempat</label>
+                        <input type="text" class="form-control" name="tempat" id="exampleFormControlInput1"
+                            placeholder="rapat">
                     </div>
             </div>
             <div class="modal-footer">
@@ -104,6 +109,9 @@
     </div>
 </div>
 {{-- modal edit end --}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 {{-- script --}}
 <script>

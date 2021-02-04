@@ -26,8 +26,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="event">Event</label>
-                        <input type="text" class="form-control" id="event" value="{{$data->event}}" name="event">
+                        <label for="event">Nama event</label>
+                        <input type="text" class="form-control" id="event" value="{{$data->nama_event}}" name="nama_event">
                     </div>
                     <div class="form-group">
                         <label for="diskripsi">Deskripsi</label>

@@ -11,7 +11,7 @@ class event extends Model
     protected $tables = 'events';
     protected $fillable = [
         'pamflet',
-        'event',
+        'nama_event',
         'slug',
         'deskripsi',
     ];

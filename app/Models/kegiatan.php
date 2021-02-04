@@ -13,14 +13,14 @@ class kegiatan extends Model
         'kegiatan',
         'keterangan',
         'foto_utama',
-        'jam',
-        'link',
-        'tanggal',
         'slug',
+        'tanggal',
+        'jam',
     ];
     protected $dates = [
         'created_at',
         'updated_at',
         'tanggal',
+        'jam',
     ];
 }

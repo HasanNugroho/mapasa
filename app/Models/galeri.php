@@ -12,6 +12,8 @@ class galeri extends Model
     protected $fillable = [
         'kegiatan',
         'gambar',
+        'link',
+        'slug',
     ];
     protected $dates = [
         'created_at',

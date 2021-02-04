@@ -5,6 +5,7 @@ use App\Models\kegiatan;
 use App\Models\galeri;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class GaleriController extends Controller
 {
@@ -18,6 +19,7 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $validateImageData = $request->validate([
+            'link' => 'required',
             'kegiatan' => 'required',
             'gambar' => 'required',
             'gambar.*' => 'mimes:jpg,png,jpeg,gif,svg'
@@ -33,6 +35,8 @@ class GaleriController extends Controller
         galeri::create([
             'gambar' => json_encode($data),
             'kegiatan' => $request->kegiatan,
+            'link' => $request->link,
+            'slug' => Str::random(5),
         ]);
         session()->flash('message', "Swal.fire('Success','Foto berhasil ditambah','success')");
         return redirect('/dashboard/galeri');
@@ -55,8 +59,12 @@ class GaleriController extends Controller
     {
         $data = [];
         // validasi kegiatan
+
         if($request->kegiatan){
             $data['kegiatan'] = 'required';
+        }
+        if($request->link){
+            $data['link'] = 'required';
         }
         // validasi gambar
         if($request->file('gambar')){
@@ -82,6 +90,9 @@ class GaleriController extends Controller
         }
         if($request->kegiatan){
             $update['kegiatan'] = $request->kegiatan;
+        }
+        if($request->link){
+            $update['link'] = $request->link;
         }
 
         galeri::where('id', $request->id)->update($update);

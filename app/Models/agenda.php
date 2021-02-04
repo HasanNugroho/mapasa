@@ -12,6 +12,7 @@ class agenda extends Model
     protected $fillable = [
         'kegiatan',
         'jam',
+        'tempat',
     ];
     protected $dates = [
         'created_at',
