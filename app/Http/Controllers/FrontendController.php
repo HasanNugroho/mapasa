@@ -32,6 +32,14 @@ class FrontendController extends Controller
     {
         $blog = blog::where('slug', $slug)->first();
         $rekomendasi = blog::where('slug', '!=' , $slug)->latest()->paginate(3);
+
+        if (!session()->get('visitsNews-'.$slug)) {
+            session()->put('visitsNews-'.$slug, true);
+            $blog->update([
+                'visitor' => $blog->visitor + 1
+            ]);
+        }
+        
         return view('blog', compact('blog', 'rekomendasi'));
     }
     public function kegiatan($id)
@@ -50,8 +58,9 @@ class FrontendController extends Controller
     {
         $preview = blog::latest()->first();
         $data = blog::where('id', '!=' , $preview->id)->get();
+        $ada = blog::all()->count();
         $jenis = "Blog";
-        return view('semua', compact('data', 'jenis', 'preview'));
+        return view('semua', compact('data', 'jenis', 'preview', 'ada'));
     }
     public function semua_kegiatan()
     {

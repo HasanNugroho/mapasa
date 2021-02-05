@@ -26,7 +26,9 @@
                         <th scope="col">No</th>
                         <th scope="col">Foto</th>
                         <th scope="col">Judul</th>
+                        @if (Auth::user()->role == "superadmin")
                         <th scope="col">Author</th>
+                        @endif
                         <th scope="col">Visitor</th>
                         <th scope="col">Action</th>
                       </tr>
@@ -37,7 +39,9 @@
                                 <th scope="row">{{$blog->firstItem()+$key}}</th>
                                 <td><img src="{{ Storage::url($e->foto)}}" style="max-width: 100px; height: auto; margin: 0 .2rem;" alt=""></td>
                                 <td>{{$e->title}}</td>
+                                @if (Auth::user()->role == "superadmin")
                                 <td>{{$e->author}}</td>
+                                @endif
                                 <td>{{$e->visitor}}</td>
                                 <td>
                                     <div class="d-flex">

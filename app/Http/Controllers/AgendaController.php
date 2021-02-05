@@ -10,7 +10,11 @@ class AgendaController extends Controller
 {
     public function index()
     {
-        $agenda = agenda::paginate(5);
+        if (Auth::user()->role == "superadmin") {
+            $agenda = agenda::paginate(5);
+        }else{
+            $agenda = agenda::where('author', Auth::user()->name)->paginate(5);
+        }
         return view('admin.agenda', compact('agenda'));
     }
     // tambah agenda

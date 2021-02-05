@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 use App\Models\pengumuman;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
 
 class PengumumanController extends Controller
 {
     public function index()
     {
-        $pengumuman = pengumuman::paginate(8);
+        if (Auth::user()->role == "superadmin") {
+            $pengumuman = pengumuman::paginate(8);
+        }else{
+            $pengumuman = pengumuman::where('author', Auth::user()->name)->paginate(8);
+        }
         return view('admin.pengumuman', compact('pengumuman'));
     }
     // store data

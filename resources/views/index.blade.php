@@ -117,7 +117,7 @@ $blog_count = blog::count();
                             </div>
                             <div class="text-5">Rumah Sdr/i {{$ag->tempat}}</div>
                         </div>
-                        <div class="card-footer text-4 text-light" style="background-color: #828282;">
+                        <div class="card-footer text-uppercase text-4 text-light" style="background-color: #828282;">
                             {{$ag->kegiatan}}
                         </div>
                     </div>
@@ -139,8 +139,8 @@ $blog_count = blog::count();
         <div class="d-flex justify-content-between mb-3">
             <div class="text-3">Kegiatan Terlaksana</div>
             <div>
-                <a href="{{route('kegiatan.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a>
-                {{-- <a href="#" class="text-primary text-5">Lihat semua</a> --}}
+                {{-- <a href="{{route('kegiatan.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a> --}}
+                <a href="{{route('kegiatan.semua')}}" class="text-primary text-5">Lihat semua</a>
             </div>
         </div>
         @if ($kegiatan_count != 0)
@@ -174,8 +174,8 @@ $blog_count = blog::count();
         <div class="d-flex justify-content-between mb-3">
             <div class="text-3">Galeri</div>
             <div>
-                <a href="{{route('galeri.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a>
-                {{-- <a href="#" class="text-primary text-5">Lihat semua</a> --}}
+                {{-- <a href="{{route('galeri.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a> --}}
+                <a href="{{route('galeri.semua')}}" class="text-primary text-5">Lihat semua</a>
             </div>
         </div>
         @if ($galeri_count != 0)
@@ -205,8 +205,8 @@ $blog_count = blog::count();
         <div class="d-flex justify-content-between mb-3">
             <div class="text-3">Blog</div>
             <div>
-                <a href="{{route('blog.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a>
-                {{-- <a href="#" class="text-primary text-5">Lihat semua</a> --}}
+                {{-- <a href="{{route('blog.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a> --}}
+                <a href="{{route('blog.semua')}}" class="text-primary text-5">Lihat semua</a>
             </div>
         </div>
         @if ($blog_count != 0)

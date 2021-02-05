@@ -100,15 +100,11 @@
                 slidesPerView: 2,
                 spaceBetween: 10,
                 },
-                '@1.00': {
-                slidesPerView: 3,
-                spaceBetween: 10,
-                },
-                '@1.25': {
-                slidesPerView: 3,
-                spaceBetween: 10,
-                },
                 '@1.50': {
+                slidesPerView: 3,
+                spaceBetween: 10,
+                },
+                '@1.75': {
                 slidesPerView: 4,
                 spaceBetween: 10,
                 },

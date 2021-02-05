@@ -35,8 +35,11 @@ use Illuminate\Support\Arr;
                             <img src="{{ Storage::url(Arr::first(json_decode($g->gambar)))}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-text">{{$g->kegiatan}}</h5>
+                                @if (Auth::user()->role == "superadmin")
+                                <td>author : {{$g->author}}</td>
+                                @endif
                                 <div class="row mr-1 ml-1 mt-2 mb-2">
-                                    <a href="#" class="col btn btn-primary btn-sm btn-see" data-id="{{$g->id}}"><span class="iconify" data-icon="ant-design:eye-filled" data-inline="true"></span></a>
+                                    <a href="#" class="col btn btn-dark btn-sm btn-see" data-id="{{$g->id}}"><span class="iconify" data-icon="ant-design:eye-filled" data-inline="true"></span></a>
                                     <a href="#" class="col ml-2 mr-2 btn btn-warning btn-edit btn-sm" data-id="{{$g->id}}"><span class="iconify" data-icon="bx:bx-edit" data-inline="true"></span></a>
                                     <a href="#" class="col btn btn-danger btn-sm btn-hapus delete-confirm" data-id="{{$g->id}}"><span class="iconify" data-icon="ant-design:delete-filled" data-inline="true"></span></a>
                                 </div>
@@ -234,7 +237,6 @@ use Illuminate\Support\Arr;
                 console.log(error)
             }
         })
-        
     })
 </script>
 @stop

@@ -23,7 +23,7 @@ use App\Http\Controllers\FeedbackController;
 |
 */
 
-Route::group(['prefix' => '/'], function(){
+Route::group(['middleware' => ['VisitorCount'], 'prefix' => '/'], function(){
     Route::get('', [FrontendController::class, 'index'])->name('landing');
     Route::post('saran', [FeedbackController::class, 'store'])->name('saran.store');
     Route::get('blog/{slug}', [FrontendController::class, 'blog'])->name('blog.front');
@@ -43,6 +43,8 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard'], function(){
     Route::get('/', [HomeController::class, 'index'])->name('dashboardstart');
+    Route::get('/feedback/see/{id}', [FeedbackController::class, 'see'])->name('feedback.see');
+    Route::get('/feedback/{id}/hapus', [FeedbackController::class, 'delete'])->name('feedback.hapus');
 });
 
 // Khusus Superadmin

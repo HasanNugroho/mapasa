@@ -11,7 +11,11 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blog = blog::paginate(6);
+        if (Auth::user()->role == "superadmin") {
+            $blog = blog::paginate(6);
+        }else{
+            $blog = blog::where('author', Auth::user()->name)->paginate(6);
+        }
         return view('admin.blog', compact('blog'));
     }
     // store data

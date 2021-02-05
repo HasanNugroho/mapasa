@@ -12,7 +12,11 @@ class KegiatanController extends Controller
 {
     public function index()
     {
-        $kegiatan = kegiatan::paginate(5);
+        if (Auth::user()->role == "superadmin") {
+            $kegiatan = kegiatan::paginate(8);
+        }else{
+            $kegiatan = kegiatan::where('author', Auth::user()->name)->paginate(8);
+        }
         return view('admin.kegiatan', compact('kegiatan'));
     }
     public function store(Request $request)

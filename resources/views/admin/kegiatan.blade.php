@@ -28,6 +28,9 @@
                         <th scope="col">Kegiatan</th>
                         <th scope="col">Jam</th>
                         <th scope="col">Tanggal</th>
+                        @if (Auth::user()->role == "superadmin")
+                        <th scope="col">Author</th>
+                        @endif
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -39,6 +42,9 @@
                                 <td>{{$k->kegiatan}}</td>
                                 <td>{{$k->jam}}</td>
                                 <td>{{$k->tanggal->isoFormat('dddd, Do MMMM YYYY')}}</td>
+                                @if (Auth::user()->role == "superadmin")
+                                <td>{{$k->author}}</td>
+                                @endif
                                 <td>
                                     <div class="d-flex">
                                         <a href="/dashboard/kegiatan/{{$k->id}}/edit" class="btn btn-warning btn-sm btn-edit" data-id="{{$k->id}}">Edit</a>

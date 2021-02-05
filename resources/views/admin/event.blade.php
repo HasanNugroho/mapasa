@@ -25,6 +25,9 @@
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">Event</th>
+                        @if (Auth::user()->role == "superadmin")
+                        <th scope="col">Author</th>
+                        @endif
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -33,6 +36,9 @@
                             <tr>
                                 <th scope="row">{{$event->firstItem()+$key}}</th>
                                 <td>{{$e->nama_event}}</td>
+                                @if (Auth::user()->role == "superadmin")
+                                <td>{{$e->author}}</td>
+                                @endif
                                 <td>
                                     <div class="d-flex">
                                         <a href="/dashboard/event/{{$e->id}}/edit" class="btn btn-warning btn-sm btn-edit" data-id="{{$e->id}}">Edit</a>

@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends Controller
 {
-    public function index()
+    public function see($id)
     {
-        # code...
+        $data = feedback::find($id)->first();
+        return view('admin.setup.see-feedback', ['data' => $data]);    
     }
 
     public function store(Request $request)
@@ -26,10 +27,16 @@ class FeedbackController extends Controller
             $store['nama'] = $request->nama;
         }
         $store['pesan'] = $request->pesan;
-        $store['author'] = Auth::user()->name;
 
         feedback::insert($store);
         session()->flash('message', "Swal.fire('Success','Kritik dan saran berhasil ditambahkan','success')");
+        return redirect()->back();
+    }
+    public function delete($id)
+    {
+        $delete = feedback::find($id)->delete();
+
+        session()->flash('message', "Swal.fire('Success','Kegiatan berhasil dihapus','success')");
         return redirect()->back();
     }
 }

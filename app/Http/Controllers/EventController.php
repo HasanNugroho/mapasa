@@ -11,7 +11,11 @@ class EventController extends Controller
 {
     public function index()
     {
-        $event = event::paginate(24);
+        if (Auth::user()->role == "superadmin") {
+            $event = event::paginate(8);
+        }else{
+            $event = event::where('author', Auth::user()->name)->paginate(8);
+        }
         return view('admin.event' ,compact('event'));
     }
     // store data

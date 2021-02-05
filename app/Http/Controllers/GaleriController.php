@@ -12,7 +12,11 @@ class GaleriController extends Controller
 {
     public function index()
     {
-        $galeri = galeri::all();
+        if (Auth::user()->role == "superadmin") {
+            $galeri = galeri::all();
+        }else{
+            $galeri = galeri::where('author', Auth::user()->name)->all();
+        }
         $kegiatan = kegiatan::all();
         return view('admin.galeri', compact('galeri', 'kegiatan'));
     }

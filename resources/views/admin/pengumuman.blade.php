@@ -25,7 +25,9 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Pengumuman</th>
+                                @if (Auth::user()->role == "superadmin")
                                 <th scope="col">Author</th>
+                                @endif
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -34,7 +36,9 @@
                             <tr>
                                 <th scope="row">{{$pengumuman->firstItem()+$key}}</th>
                                 <td>{{$p->pengumuman}}</td>
+                                @if (Auth::user()->role == "superadmin")
                                 <td>{{$p->author}}</td>
+                                @endif
                                 <td>
                                     <div class="d-flex">
                                         <a href="#" class="btn btn-warning btn-sm btn-edit"
