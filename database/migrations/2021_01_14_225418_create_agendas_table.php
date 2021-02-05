@@ -19,6 +19,7 @@ class CreateAgendasTable extends Migration
             $table->string('jam');
             $table->string('tanggal');
             $table->string('tempat');
+            $table->string('author');
             $table->timestamps();
         });
     }

@@ -13,6 +13,7 @@ class agenda extends Model
         'kegiatan',
         'jam',
         'tempat',
+        'author',
     ];
     protected $dates = [
         'created_at',

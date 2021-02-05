@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\feedback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends Controller
 {
@@ -25,6 +26,7 @@ class FeedbackController extends Controller
             $store['nama'] = $request->nama;
         }
         $store['pesan'] = $request->pesan;
+        $store['author'] = Auth::user()->name;
 
         feedback::insert($store);
         session()->flash('message', "Swal.fire('Success','Kritik dan saran berhasil ditambahkan','success')");

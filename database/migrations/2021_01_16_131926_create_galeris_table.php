@@ -19,6 +19,7 @@ class CreateGalerisTable extends Migration
             $table->text('gambar');
             $table->string('link');
             $table->string('slug');
+            $table->string('author');
             $table->timestamps();
         });
     }

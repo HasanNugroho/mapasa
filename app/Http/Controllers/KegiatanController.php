@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\kegiatan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -40,6 +41,7 @@ class KegiatanController extends Controller
             'keterangan' => $request->keterangan,
             'jam' => $request->jam,
             'tanggal' => $request->tanggal,
+            'author' => Auth::user()->name,
         ]);
 
         session()->flash('message', "Swal.fire('Success','Kegiatan berhasil ditambah','success')");

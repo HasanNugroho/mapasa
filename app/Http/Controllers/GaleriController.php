@@ -6,6 +6,7 @@ use App\Models\galeri;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class GaleriController extends Controller
 {
@@ -37,6 +38,7 @@ class GaleriController extends Controller
             'kegiatan' => $request->kegiatan,
             'link' => $request->link,
             'slug' => Str::random(5),
+            'author' => Auth::user()->name,
         ]);
         session()->flash('message', "Swal.fire('Success','Foto berhasil ditambah','success')");
         return redirect('/dashboard/galeri');

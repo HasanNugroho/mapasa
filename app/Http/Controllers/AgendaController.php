@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\agenda;
 
@@ -26,6 +27,7 @@ class AgendaController extends Controller
             'kegiatan' => $request->kegiatan,
             'jam' => $request->jam,
             'tanggal' => $request->tanggal,
+            'author' => Auth::user()->name,
             'tempat' => $request->tempat,
         ]);
         session()->flash('message', "Swal.fire('Success','Agenda berhasil ditambahkan','success')");

@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->string('nama_event');
             $table->text('deskripsi');
             $table->text('pamflet');
+            $table->string('author');
             $table->timestamps();
         });
     }

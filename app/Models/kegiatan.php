@@ -16,6 +16,7 @@ class kegiatan extends Model
         'slug',
         'tanggal',
         'jam',
+        'author',
     ];
     protected $dates = [
         'created_at',

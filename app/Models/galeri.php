@@ -14,6 +14,7 @@ class galeri extends Model
         'gambar',
         'link',
         'slug',
+        'author',
     ];
     protected $dates = [
         'created_at',

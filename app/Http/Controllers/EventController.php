@@ -5,6 +5,7 @@ use App\Models\event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -32,6 +33,7 @@ class EventController extends Controller
             'nama_event' => $request->nama_event,
             'slug' => Str::slug($request->event),
             'deskripsi' => $request->deskripsi,
+            'author' => Auth::user()->name,
         ]);
         session()->flash('message', "Swal.fire('Success','Event berhasil ditambahkan','success')");
         return redirect()->back();

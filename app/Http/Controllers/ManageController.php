@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\manage;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -43,6 +44,7 @@ class ManageController extends Controller
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'keterangan' => 'jumbotron',
+            'author' => Auth::user()->name,
         ]);
         session()->flash('message', "Swal.fire('Success','Jumbotron berhasil ditambahkan','success')");
         return redirect()->back();

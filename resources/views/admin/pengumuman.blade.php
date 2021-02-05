@@ -65,10 +65,6 @@
                 <form action="{{route('pengumuman.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="author">Author</label>
-                        <input type="text" class="form-control" id="author" name="author">
-                    </div>
-                    <div class="form-group">
                         <label for="pengumuman">Pengumuman</label>
                         <textarea class="form-control" name="pengumuman" id="pengumuman" rows="5"></textarea>
                     </div>

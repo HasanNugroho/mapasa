@@ -21,6 +21,7 @@ class CreateKegiatansTable extends Migration
             $table->string('foto_utama');
             $table->string('tanggal');
             $table->time('jam');
+            $table->string('author');
             $table->timestamps();
         });
     }

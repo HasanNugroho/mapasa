@@ -14,6 +14,7 @@ class event extends Model
         'nama_event',
         'slug',
         'deskripsi',
+        'author',
     ];
     protected $dates = [
         'created_at',

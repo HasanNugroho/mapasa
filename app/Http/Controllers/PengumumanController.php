@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\pengumuman;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -17,11 +18,10 @@ class PengumumanController extends Controller
     {
         $request->validate([
             'pengumuman' => 'required',
-            'author' => 'required',
         ]);
         pengumuman::create([
             'pengumuman' => $request->pengumuman,
-            'author' => $request->author
+            'author' => Auth::user()->name,
         ]);
         
         session()->flash('message', "Swal.fire('Success','Blog berhasil ditambah','success')");
@@ -40,11 +40,9 @@ class PengumumanController extends Controller
     {
         $request->validate([
             'pengumuman' => 'required',
-            'author' => 'required',
         ]);
         pengumuman::find($id)->update([
             'pengumuman' => $request->pengumuman,
-            'author' => $request->author
         ]);
     } 
 
