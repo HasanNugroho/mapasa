@@ -11,54 +11,13 @@ class ManageController extends Controller
 {
     public function index_jumbotron()
     {
-        $jumbotron = manage::where('keterangan', 'jumbotron')->paginate(5);
-        $route_add = '/dashboard/web/jumbotron/store';
-        $route_edit = '/dashboard/web/jumbotron/edit';
-        $route_delete = '/dashboard/web/jumbotron/delete';
+        $data = manage::where('keterangan', 'jumbotron')->first();
+        $route = '/dashboard/web/jumbotron/update';
         $keterangan = 'jumbotron';
 
-        return view('admin.management', compact('jumbotron', 'keterangan', 'route_add', 'route_edit', 'route_delete'));
+        return view('admin.management', compact('data', 'keterangan', 'route'));
     }
     // store jumbotron
-    public function store_jumbotron(Request $request)
-    {
-        $data = [
-            'judul' => 'required',
-            'gambar' => 'required',
-        ];
-
-        if ($request->deskripsi) {
-            $data = [
-                'deskripsi' => 'required',
-            ];
-        }
-        $request->validate($data);
-        // dd($request);
-        if($request->hasfile('gambar'))
-        {
-            $fotoutama = Storage::putFile('public/manage',  $request->gambar->path());
-        }
-
-        manage::create([
-            'gambar' => $fotoutama,
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'keterangan' => 'jumbotron',
-            'author' => Auth::user()->name,
-        ]);
-        session()->flash('message', "Swal.fire('Success','Jumbotron berhasil ditambahkan','success')");
-        return redirect()->back();
-    }
-    // get to edit
-    public function edit_jumbotron($id)
-    {
-        $jumbotron = manage::find($id)->first();
-        $keterangan = 'jumbotron';
-        $route = '/dashboard/web/jumbotron/update';
-
-        return view('admin.setup.edit-manage', compact('jumbotron', 'route', 'keterangan'));
-    }
-    // update
     public function update_jumbotron(Request $request)
     {
         $validasi = [
@@ -82,20 +41,40 @@ class ManageController extends Controller
 
         $update['deskripsi'] = $request->deskripsi;
         $update['judul'] = $request->judul;
+        $update['author'] = Auth::user()->name;
 
         manage::where('id', $request->id)->update($update);
         
         session()->flash('message', "Swal.fire('Success','Jumbotron berhasil diupdate','success')");
         return redirect('/dashboard/web/jumbotron');
     }
-
-    public function delete_jumbotron ($id)
+    
+    public function index_sejarah()
     {
-        $hapus = manage::find($id)->first();
-        Storage::delete($hapus->gambar);
-        $hapus->delete();
+        $data = manage::where('keterangan', 'sejarah')->first();
+        $route = '/dashboard/web/sejarah/update';
+        $keterangan = 'sejarah';
 
-        session()->flash('message', "Swal.fire('Success','Jumbotron berhasil dihapus','success')");
-        return redirect('/dashboard/web/jumbotron');
+        return view('admin.management', compact('data', 'keterangan', 'route'));
+    }
+    // store sejarah
+    public function update_sejarah(Request $request)
+    {
+        // dd($request);
+        $validasi = [
+            'deskripsi' => 'required',
+        ];
+        
+        $request->validate($validasi);
+        
+        $edit_sejarah = manage::where('id', $request->id)->first();
+
+        $update['deskripsi'] = $request->deskripsi;
+        $update['author'] = Auth::user()->name;
+
+        manage::where('id', $request->id)->update($update);
+        
+        session()->flash('message', "Swal.fire('Success','sejarah berhasil diupdate','success')");
+        return redirect('/dashboard/web/sejarah');
     }
 }

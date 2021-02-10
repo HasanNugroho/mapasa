@@ -17,8 +17,7 @@ class GaleriController extends Controller
         }else{
             $galeri = galeri::where('author', Auth::user()->name)->all();
         }
-        $kegiatan = kegiatan::all();
-        return view('admin.galeri', compact('galeri', 'kegiatan'));
+        return view('admin.galeri', compact('galeri'));
     }
     // store gambar
     public function store(Request $request)
@@ -50,15 +49,14 @@ class GaleriController extends Controller
     // lihat gambar
     public function see($id)
     {
-        $data = galeri::find($id)->first();
+        $data = galeri::where('id', $id)->first();
         return view('admin.setup.see-galeri', ['data' => $data]);    
     }
     // get to edit
     public function edit($id)
     {
-        $kegiatan = kegiatan::all();
         $data = galeri::find($id)->first();
-        return view('admin.setup.edit-galeri', ['data' => $data, 'kegiatan' => $kegiatan]);   
+        return view('admin.setup.edit-galeri', ['data' => $data]);   
     }
     // update galeri
     public function update(Request $request)

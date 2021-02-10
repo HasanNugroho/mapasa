@@ -32,11 +32,12 @@ Route::group(['middleware' => ['VisitorCount'], 'prefix' => '/'], function(){
     Route::get('blog', [FrontendController::class, 'semua_blog'])->name('blog.semua');
     Route::get('kegiatan', [FrontendController::class, 'semua_kegiatan'])->name('kegiatan.semua');
     Route::get('kegiatan/{id}', [FrontendController::class, 'kegiatan'])->name('kegiatan.lihat');
+    Route::get('event/{slug}', [FrontendController::class, 'event'])->name('event.lihat');
 });
 
-Route::get('/semua', function () {
-    return view('semua');
-});
+// Route::get('/event', function () {
+//     return view('event');
+// });
 
 Auth::routes();
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboardstart')->middleware(['auth', 'VisitorCount']); //general
@@ -110,10 +111,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/profile'], funct
 // Admin web manage jumbotron
 Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/web/jumbotron'], function(){
     Route::get('', [ManageController::class, 'index_jumbotron'])->name('jumbotron');
-    Route::post('/store', [ManageController::class, 'store_jumbotron'])->name('add.jumbotron');
-    Route::get('/edit/{id}', [ManageController::class, 'edit_jumbotron'])->name('edit.jumbotron');
     Route::post('/update', [ManageController::class, 'update_jumbotron'])->name('update.jumbotron');
-    Route::get('/delete/{id}', [ManageController::class, 'delete_jumbotron'])->name('delete.jumbotron');
+});
+
+// Admin web manage sejarah
+Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/web/sejarah'], function(){
+    Route::get('', [ManageController::class, 'index_sejarah'])->name('sejarah');
+    Route::post('/update', [ManageController::class, 'update_sejarah'])->name('update.sejarah');
 });
 
 // Admin galeri

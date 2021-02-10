@@ -22,13 +22,8 @@
         </div>
     </div>
     <div class="mb-3 col-mb-12">
-        <label for="role">Kegiatan</label>
-        <select class="form-select" aria-label="Pilih kegiatan" value="{{$data->kegiatan}}" name="kegiatan">
-            {{-- <option selected>Open this select menu</option> --}}
-            @foreach ($kegiatan as $kegiatan)
-            <option @if ($kegiatan->kegiatan == $data->kegiatan) selected @endif value="{{$kegiatan->kegiatan}}">{{$kegiatan->kegiatan}}</option>
-            @endforeach
-        </select>
+        <label for="kegiatan" class="form-label">Kegiatan</label>
+        <input type="text" class="form-control" id="kegiatan" name="kegiatan" value="{{$data->kegiatan}}">
     </div>
     <div class="mb-3 col-mb-12">
         <label for="link" class="form-label">Link Foto</label>

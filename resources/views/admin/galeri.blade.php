@@ -68,7 +68,7 @@ use Illuminate\Support\Arr;
                             <div class="form-group">
                                 <label for="tali" class="form-label">Foto Kegiatan</label>
                                 <input type="file" name="gambar[]" id="images" class="form-control" multiple>
-                                <div class="form-text">Bisa menginput banyak foto (Memasukan foto dengan cara berulang)
+                                <div class="form-text">Bisa menginput banyak foto (Memasukan foto dengan memblok foto yang akan di upload)
                                 </div>
                             </div>
                         </div>
@@ -79,13 +79,8 @@ use Illuminate\Support\Arr;
                             </div>
                         </div>
                         <div class="mb-3 col-mb-12">
-                            <label for="role">Kegiatan</label>
-                            <select class="form-select" aria-label="Pilih kegiatan" name="kegiatan">
-                                <option selected>Open this select menu</option>
-                                @foreach ($kegiatan as $kegiatan)
-                                <option value="{{$kegiatan->kegiatan}}">{{$kegiatan->kegiatan}}</option>
-                                @endforeach
-                            </select>
+                            <label for="kegiatan" class="form-label">Kegiatan</label>
+                            <input type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Rapat rutin">
                         </div>
                         <div class="mb-3 col-mb-12">
                             <label for="link" class="form-label">Link Foto</label>
@@ -172,6 +167,7 @@ use Illuminate\Support\Arr;
 <script>
     $('.btn-see').on('click', function () {
         let id = $(this).data('id')
+        // console.log(id)
         $.ajax({
             url: '/dashboard/galeri/see/' + id,
             method: "GET",

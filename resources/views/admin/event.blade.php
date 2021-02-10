@@ -20,19 +20,19 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Event</th>
-                        @if (Auth::user()->role == "superadmin")
-                        <th scope="col">Author</th>
-                        @endif
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($event as $key => $e)
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Event</th>
+                                @if (Auth::user()->role == "superadmin")
+                                <th scope="col">Author</th>
+                                @endif
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($event as $key => $e)
                             <tr>
                                 <th scope="row">{{$event->firstItem()+$key}}</th>
                                 <td>{{$e->nama_event}}</td>
@@ -41,15 +41,17 @@
                                 @endif
                                 <td>
                                     <div class="d-flex">
-                                        <a href="/dashboard/event/{{$e->id}}/edit" class="btn btn-warning btn-sm btn-edit" data-id="{{$e->id}}">Edit</a>
-                                        <a href="#" class="ml-2 btn btn-danger btn-sm btn-hapus" data-id="{{$e->id}}">Hapus</a>
+                                        <a href="/dashboard/event/{{$e->id}}/edit"
+                                            class="btn btn-warning btn-sm btn-edit" data-id="{{$e->id}}">Edit</a>
+                                        <a href="#" class="ml-2 btn btn-danger btn-sm btn-hapus"
+                                            data-id="{{$e->id}}">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                    {{$event->links('vendor.pagination.simple-bootstrap-4')}}
-                  </table>
+                            @endforeach
+                        </tbody>
+                        {{$event->links('vendor.pagination.simple-bootstrap-4')}}
+                    </table>
                 </div>
             </div>
         </div>
@@ -68,13 +70,13 @@
                     @csrf
                     <div class="form-group">
                         <div class="text-center">
-                            <img src="{{ asset('images') }}/image-preview.png" alt="Image Preview" style="max-width: 400px; height: auto;"
-                                id="preview">
+                            <img src="{{ asset('images') }}/image-preview.png" alt="Image Preview"
+                                style="max-width: 400px; height: auto;" id="preview">
                         </div>
                         <div class="custom-file mt-3">
                             <input id="gambar" class="custom-file-input" type="file" name="pamflet"
                                 onchange="loadFile(event)">
-                            <label for="my-input" class="custom-file-label" id="labelimg">Pamflet</label>
+                            <label for="my-input" class="custom-file-label" id="labelimg">Jumbotron(foto header)</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,17 +85,45 @@
                     </div>
                     <div class="form-group">
                         <label for="diskripsi">Deskripsi</label>
-                        <div class="col-md-12">
-                            <textarea rows="15" id="konten"
-                                class="form-control form-control-line  @error('diskripsi') is-invalid @enderror"
-                                name="deskripsi" placeholder=""></textarea>
+                        <textarea rows="15" id="konten"
+                            class="form-control form-control-line  @error('diskripsi') is-invalid @enderror"
+                            name="deskripsi" placeholder=""></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="d-flex align-items-center">
+                            <label for="jadwal">Jadwal</label>
+                            <label id="emailHelp" class="form-text ml-2">(Opsional)</label>
+                            <label id="emailHelp" class="form-text text-danger ml-2">Belum tersedia</label>
                         </div>
+                        <table class="table table-bordered" id="dynamicTable">
+                            <tr>
+                                <th>Kegiatan</th>
+                                <th>Tempat</th>
+                                <th>Tanggal</th>
+                                <th>Jam</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="kegiatan[]" placeholder="Masukan kegiatan"
+                                        class="form-control" disabled /></td>
+                                <td><input type="text" name="tempat[]" placeholder="Masukan tempat "
+                                        class="form-control" disabled /></td>
+                                <td><input type="date" name="tanggal[]" placeholder="Masukan tanggal"
+                                        class="form-control" disabled /></td>
+                                <td><input type="time" name="jam[]" placeholder="Masukan jam" class="form-control"
+                                        disabled />
+                                </td>
+                                <td><button type="button" name="add" id="add" disabled
+                                        class="btn btn-success">Tambah</button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>
-            </form>
+                </form>
             </div>
         </div>
     </div>
@@ -110,7 +140,7 @@
             <form action="{{route('update.kegiatan')}}" method="POST" id="form-edit">
                 @csrf
                 <div class="modal-body">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-update">Update</button>
@@ -122,20 +152,24 @@
 {{-- modal edit end --}}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 {{-- script --}}
 {{-- multiple image --}}
 <script type="text/javascript">
-    $(document).ready(function () {
-        $(".btn-tambah").click(function () {
-            var html = $(".clone").html();
-            $(".increment").after(html);
-        });
-        $("form").on("click", ".btn-kurang", function () {
-            $(this).parents(".control-group").remove();
-        });
+    var i = 0;
+    $("#add").click(function () {
+        ++i;
+        $("#dynamicTable").append(
+            '<tr><td><input type="text" name="kegiatan[]" placeholder="Masukan kegiatan" class="form-control" /></td><td><input type="text" name="tempat[]" placeholder="Masukan tempat" class="form-control" /></td><td><input type="date" name="tanggal[]" placeholder="Masukan tanggal" class="form-control" /></td><td><input type="time" name="jam[]" placeholder="Masukan jam" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Hapus</button></td></tr>'
+        );
     });
+
+    $(document).on('click', '.remove-tr', function () {
+        $(this).parents('tr').remove();
+    });
+
 </script>
 
 <script src="{{asset('/vendor/ckeditor/ckeditor.js')}}"></script>
@@ -151,18 +185,19 @@
 
 {{-- preview img --}}
 <script>
-        function loadFile(event){
+    function loadFile(event) {
         //mengubah gambar
         var reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
-        reader.onload = function(){
-        output.src = reader.result;
+        reader.onload = function () {
+            output.src = reader.result;
         }
         //mengubah label
         var file = document.getElementById('gambar');
         var output = document.getElementById('preview');
         var file = document.getElementById('labelimg').innerHTML = file.files[0].name
-  };
+    };
+
 </script>
 {{-- ajax --}}
 <script>
@@ -192,6 +227,7 @@
             }
         })
     })
+
 </script>
 
 @stop

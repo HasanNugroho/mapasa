@@ -7,19 +7,22 @@ use App\Models\event;
 use App\Models\pengumuman;
 use App\Models\agenda;
 use App\Models\blog;
+use App\Models\manage;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
     public function index()
     {
+        $jumbotron = manage::where('keterangan', 'jumbotron')->first();
+        $sejarah = manage::where('keterangan', 'sejarah')->first();
         $pengumuman = pengumuman::get();
-        $event = event::latest();
+        $event = event::all();
         $agenda = agenda::get();
         $kegiatan = kegiatan::paginate(4);
         $galeri = galeri::paginate(3);
         $blog = blog::paginate(3);
-        return view('index', compact('pengumuman', 'event', 'kegiatan', 'agenda', 'galeri', 'blog'));
+        return view('index', compact('pengumuman', 'event', 'kegiatan', 'agenda', 'galeri', 'blog', 'jumbotron', 'sejarah'));
     }
 
     public function galeri($slug)
@@ -44,7 +47,7 @@ class FrontendController extends Controller
     }
     public function kegiatan($id)
     {
-        $data = kegiatan::find($id)->first();
+        $data = kegiatan::where('id', $id)->first();
         return view('admin.setup.see-kegiatan', ['data' => $data]);    
     }
     public function semua_galeri()
@@ -67,5 +70,10 @@ class FrontendController extends Controller
         $data = kegiatan::all();
         $jenis = "Kegiatan";
         return view('semua', compact('data', 'jenis'));
+    }
+    public function event($slug)
+    {
+        $data = event::where('slug', $slug)->first();
+        return view('event', compact('data'));
     }
 }

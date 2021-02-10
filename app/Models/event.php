@@ -15,9 +15,15 @@ class event extends Model
         'slug',
         'deskripsi',
         'author',
+        'tempat',
+        'kegiatan',
+        'jam',
+        'tanggal',
     ];
     protected $dates = [
         'created_at',
         'updated_at',
+        // 'jam',
+        // 'tanggal',
     ];
 }

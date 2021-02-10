@@ -20,6 +20,10 @@ class CreateEventsTable extends Migration
             $table->text('deskripsi');
             $table->text('pamflet');
             $table->string('author');
+            $table->string('kegiatan')->nullable();
+            $table->string('tempat')->nullable();
+            $table->string('jam')->nullable();
+            $table->string('tanggal')->nullable();
             $table->timestamps();
         });
     }

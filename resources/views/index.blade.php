@@ -16,11 +16,11 @@ $kegiatan_count = kegiatan::count();
 $galeri_count = galeri::count();
 $blog_count = blog::count();
 ?>
-@if ($pengumuman_count != 0)  
+@if ($pengumuman_count != 0)
 <div class="pengumuman">
-    <marquee  scrolldelay="9" class="text-berjalan text-5">
+    <marquee scrolldelay="9" class="text-berjalan text-5">
         @foreach ($pengumuman as $p)
-            {{$p->pengumuman}} -by {{$p->author}} &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+        {{$p->pengumuman}} -by {{$p->author}} &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
         @endforeach
     </marquee>
 </div>
@@ -28,7 +28,7 @@ $blog_count = blog::count();
 
 
 {{-- Hero --}}
-<div class="d-none d-md-block">
+{{-- <div class="d-none d-md-block">
     <div class="container">
         <div class="row hero align-items-center">
             <div class="col-md-6">
@@ -39,39 +39,50 @@ $blog_count = blog::count();
             <div class="col-md-6">
                 <div id="hero-img-line"></div>
                 <img src="{{asset('images/jumbotron.png')}}" class="hero-img" alt="gambar anggota mapasa">
-            </div>
-        </div>
-    </div>
 </div>
+</div>
+</div>
+</div> --}}
 
-<div class="d-md-none">
-    <div class="hero-utama" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, #ffffff), url(/images/hero-m.svg);
+{{-- <div class="d-md-none"> --}}
+<div class="hero-utama" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 25%, #ffffff), url({{Storage::url($jumbotron->gambar)}});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 300px;
-    width: 100%;">
-        <div class="center-item">
-            <div class="text-light">
-                <div class="text-2">Mapasa</div>
-                <div class="text-3">Manunggaling Pemuda Salakan</div>
-                <a href="#" class="btn btn-md btn-primary text-4 mt-4">Selengkapnya</a>
+    position: relative;">
+    <div class="center">
+        <div class="text-light">
+            <div class="text-2">{{$jumbotron->judul}}</div>
+            <div class="text-3">{{$jumbotron->deskripsi}}</div>
+            <a href="#agenda" class="btn btn-md btn-primary text-4 mt-4">Selengkapnya</a>
+        </div>
+    </div>
+</div>
+{{-- </div> --}}
+
+{{-- Hero end --}}
+
+{{-- Sejarah --}}
+<div class="container">
+    <div class="bagian">
+        <div class="text-center">
+            <div class="text-4 sejarah">
+                {{$sejarah->deskripsi}}
             </div>
         </div>
     </div>
 </div>
-
-{{-- Hero end --}}
+{{-- Sejarah End --}}
 
 {{-- Event --}}
-@if ($event_count != 0)  
+@if ($event_count != 0)
 <div class="container">
     <div class="bagian">
         <div class="text-3 mb-3">Event</div>
         <div class="row">
             @foreach ($event as $ev)
             <div class="col-md-6 mt-2 mb-2">
-                <a href="#">
+                <a href="{{route('event.lihat', $ev->slug)}}">
                     <div class="card bayangan">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
@@ -83,7 +94,6 @@ $blog_count = blog::count();
                                 </div>
                                 <span class="iconify icon-event" data-icon="mdi:virus" data-inline="false"></span>
                             </div>
-
                         </div>
                     </div>
                 </a>
@@ -126,9 +136,9 @@ $blog_count = blog::count();
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
-        @else
-        <div class="text-4 text-center text-secondary bagian-blog">Tidak ada agenda</div>
-        @endif
+            @else
+            <div class="text-4 text-center text-secondary bagian-blog">Tidak ada agenda</div>
+            @endif
         </div>
     </div>
 </div>
@@ -154,7 +164,8 @@ $blog_count = blog::count();
                                 <div class="text-5">{{$kg->jam->isoformat('HH:mm')}}</div>
                                 <div class="text-5">{{$kg->tanggal->isoformat('DD MMMM YYYY')}}</div>
                             </div>
-                            <img class="img-kegiatan" src="{{ Storage::url($kg->foto_utama)}}" alt="">
+                            <img class="img-kegiatan img-thumbnail" style="object-fit:cover;"
+                                src="{{ Storage::url($kg->foto_utama)}}" alt="">
                             <div class="text-4">{{$kg->kegiatan}}</div>
                         </div>
                     </div>
@@ -163,7 +174,7 @@ $blog_count = blog::count();
             @endforeach
         </div>
         @else
-            <div class="text-4 text-center text-secondary bagian-blog">Tidak ada Kegiatan</div>
+        <div class="text-4 text-center text-secondary bagian-blog">Tidak ada Kegiatan</div>
         @endif
     </div>
 </div>
@@ -183,8 +194,9 @@ $blog_count = blog::count();
             @foreach ($galeri as $ga)
             <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
                 <a href="{{route('galeri.front', $ga->slug)}}">
-                    <div class="card bayangan card-img text-white">
-                        <img src="{{ Storage::url(Arr::first(json_decode($ga->gambar)))}}" class="card-img" alt="...">
+                    <div class="card card-gambar bayangan text-white">
+                        <img src="{{ Storage::url(Arr::first(json_decode($ga->gambar)))}}" style="object-fit: cover"
+                            class="card-img card-gambar img-thumbnail" alt="...">
                         <div class="card-img-overlay text-center galeri">
                             <div class="text-4 text-dark">{{$ga->kegiatan}}</div>
                         </div>
@@ -194,7 +206,7 @@ $blog_count = blog::count();
             @endforeach
         </div>
         @else
-            <div class="text-4 text-center text-secondary bagian-blog">Tidak ada foto</div>
+        <div class="text-4 text-center text-secondary bagian-blog">Tidak ada foto</div>
         @endif
     </div>
 </div>
@@ -215,10 +227,11 @@ $blog_count = blog::count();
             <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
                 <a href="{{route('blog.front', $bl->slug)}}">
                     <div class="card bayangan">
-                        <img src="{{ Storage::url($bl->foto)}}" class="card-img-top"
+                        <img src="{{ Storage::url($bl->foto)}}" style="object-fit:cover;"
+                            class="card-img-top card-gambar img-thumbnail"
                             style="border-top-left-radius: 10px; border-top-right-radius: 10px;" alt="...">
                         <div class="card-footer ">
-                            <div class="text-4 text-dark">{{$bl->title}}</div>
+                            <div class="text-4 text-dark">{{Str::limit($bl->title,25,'...')}}</div>
                             <div class="text-5 mt-1 text-secondary">{{$bl->created_at->isoformat('DD MMMM YYYY')}}</div>
                         </div>
                     </div>
@@ -264,16 +277,17 @@ $blog_count = blog::count();
                             <label for="exampleInputEmail1" class="form-label ">Nama</label>
                             <div id="nama" class="form-text ml-2">(optional)</div>
                         </div>
-                      <input type="text" name="nama" class="form-control" id="exampleInputEmail1" aria-describedby="nama">
+                        <input type="text" name="nama" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="nama">
                     </div>
                     <div class="mb-3">
-                      <label for="pesan" class="form-label">Kritik dan Saran</label>
-                      <textarea name="pesan" id="pesan" class="form-control" cols="5" rows="5"></textarea>
+                        <label for="pesan" class="form-label">Kritik dan Saran</label>
+                        <textarea name="pesan" id="pesan" class="form-control" cols="5" rows="5"></textarea>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-primary">Kirim</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                <button type="submit" class="btn btn-primary">Kirim</button>
                 </form>
             </div>
         </div>

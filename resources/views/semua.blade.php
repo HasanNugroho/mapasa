@@ -17,14 +17,13 @@
                 @foreach ($data as $da)
                 <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
                     <a href="{{route('galeri.front', $da->slug)}}">
-                        <div class="card bayangan card-img text-white">
-                            <img src="{{ Storage::url(Arr::first(json_decode($da->gambar)))}}" class="card-img"
-                                alt="...">
+                        <div class="card card-gambar bayangan text-white">
+                            <img src="{{ Storage::url(Arr::first(json_decode($da->gambar)))}}" style="object-fit: cover" class="card-img card-gambar img-thumbnail" alt="...">
                             <div class="card-img-overlay text-center galeri">
                                 <div class="text-4 text-dark">{{$da->kegiatan}}</div>
                             </div>
                         </div>
-                    </a>
+                        </a>
                 </div>
                 @endforeach
             </div>
@@ -60,8 +59,8 @@
                 <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
                     <a href="{{route('blog.front', $da->slug)}}">
                         <div class="card bayangan">
-                            <img src="{{ Storage::url($da->foto)}}" class="card-img-top"
-                                style="border-top-left-radius: 10px; border-top-right-radius: 10px;" alt="...">
+                            <img src="{{ Storage::url($da->foto)}}" style="object-fit:cover;" class="card-img-top card-gambar img-thumbnail"
+                            style="border-top-left-radius: 10px; border-top-right-radius: 10px;" alt="...">                            
                             <div class="card-footer ">
                                 <div class="text-4 text-dark">{{$da->title}}</div>
                                 <div class="text-5 mt-1 text-secondary">{{$da->created_at->isoformat('DD MMMM YYYY')}}
@@ -92,7 +91,7 @@
                                     <div class="text-5">{{$da->jam->isoformat('HH:mm')}}</div>
                                     <div class="text-5">{{$da->tanggal->isoformat('DD MMMM YYYY')}}</div>
                                 </div>
-                                <img class="img-kegiatan" src="{{ Storage::url($da->foto_utama)}}" alt="">
+                                <img class="img-kegiatan img-thumbnail" style="object-fit:cover;" src="{{ Storage::url($da->foto_utama)}}" alt="">
                                 <div class="text-4">{{$da->kegiatan}}</div>
                             </div>
                         </div>

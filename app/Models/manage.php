@@ -13,6 +13,7 @@ class manage extends Model
         'gambar',
         'judul',
         'deskripsi',
+        'author',
         'keterangan',
     ];
     protected $dates = [

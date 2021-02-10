@@ -16,8 +16,8 @@
                     <div class="form-group">
                         <input type="hidden" name="id" value="{{$data->id}}">
                         <div class="text-center">
-                            <img src="{{Storage::url($data->pamflet)}}" alt="Image Preview" style="max-width: 400px; height: auto;"
-                                id="preview">
+                            <img src="{{Storage::url($data->pamflet)}}" alt="Image Preview"
+                                style="max-width: 400px; height: auto;" id="preview">
                         </div>
                         <div class="custom-file mt-3">
                             <input id="gambar" class="custom-file-input" type="file" name="pamflet"
@@ -27,7 +27,8 @@
                     </div>
                     <div class="form-group">
                         <label for="event">Nama event</label>
-                        <input type="text" class="form-control" id="event" value="{{$data->nama_event}}" name="nama_event">
+                        <input type="text" class="form-control" id="event" value="{{$data->nama_event}}"
+                            name="nama_event">
                     </div>
                     <div class="form-group">
                         <label for="diskripsi">Deskripsi</label>
@@ -36,6 +37,34 @@
                                 class="form-control form-control-line  @error('diskripsi') is-invalid @enderror"
                                 name="deskripsi">{{$data->deskripsi}}</textarea>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="d-flex align-items-center">
+                            <label for="jadwal">Jadwal</label>
+                            <label id="emailHelp" class="form-text ml-2">(Opsional)</label>
+                            <label id="emailHelp" class="form-text text-danger ml-2">Belum tersedia</label>
+                        </div>
+                        <table class="table table-bordered" id="dynamicTable">
+                            <tr>
+                                <th>Kegiatan</th>
+                                <th>Tempat</th>
+                                <th>Tanggal</th>
+                                <th>Jam</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="kegiatan[]" placeholder="Masukan kegiatan"
+                                        class="form-control" disabled/></td>
+                                <td><input type="text" name="tempat[]" placeholder="Masukan tempat "
+                                        class="form-control" disabled/></td>
+                                <td><input type="date" name="tanggal[]" placeholder="Masukan tanggal"
+                                        class="form-control" disabled/></td>
+                                <td><input type="time" name="jam[]" placeholder="Masukan jam" class="form-control" disabled/>
+                                </td>
+                                <td><button type="button" name="add" id="add" disabled class="btn btn-success">Tambah</button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
@@ -61,6 +90,20 @@
 {{-- script --}}
 <script src="{{asset('/vendor/ckeditor/ckeditor.js')}}"></script>
 {{-- text editor --}}
+<script type="text/javascript">
+    var i = 0;
+    $("#add").click(function () {
+        ++i;
+        $("#dynamicTable").append(
+            '<tr><td><input type="text" name="kegiatan[]" placeholder="Masukan kegiatan" class="form-control" /></td><td><input type="text" name="tempat[]" placeholder="Masukan tempat" class="form-control" /></td><td><input type="date" name="tanggal[]" placeholder="Masukan tanggal" class="form-control" /></td><td><input type="time" name="jam[]" placeholder="Masukan jam" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Hapus</button></td></tr>'
+        );
+    });
+
+    $(document).on('click', '.remove-tr', function () {
+        $(this).parents('tr').remove();
+    });
+
+</script>
 <script>
     var konten = document.getElementById("konten");
     CKEDITOR.replace(konten, {

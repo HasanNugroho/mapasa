@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Database\Seeders\user;
+use Database\Seeders\manage;
 
 class refreshSeeder extends Command
 {
@@ -45,5 +46,7 @@ class refreshSeeder extends Command
         $this->info('Seeding tables'); //info
         $this->call(user::class); // call db seeder --class=user
         $this->info('Seeding User done'); //info
+        $this->call(manage::class); // call db seeder --class=manage
+        $this->info('Seeding Manage done'); //info
     }
 }

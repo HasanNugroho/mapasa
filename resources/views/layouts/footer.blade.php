@@ -17,11 +17,11 @@
             </div>
             <div class="col-md-3 mt-3">
                 <div class="text-4">Link pembantu</div>
-                <a class="text-5 text-link" href="#">Home</a><br>
-                <a class="text-5 text-link" href="#">Agenda</a><br>
-                <a class="text-5 text-link" href="#">Kegiatan</a><br>
-                <a class="text-5 text-link" href="#">Galeri</a><br>
-                <a class="text-5 text-link" href="#">Blog</a>
+                <a class="text-5 text-link" href="/">Home</a><br>
+                <a class="text-5 text-link" href="/#agenda">Agenda</a><br>
+                <a class="text-5 text-link" href="/#kegiatan">Kegiatan</a><br>
+                <a class="text-5 text-link" href="/#galeri">Galeri</a><br>
+                <a class="text-5 text-link" href="/#blog">Blog</a>
             </div>
             <div class="col-md-4 mt-3">
                 <div class="text-4">Maps</div>
