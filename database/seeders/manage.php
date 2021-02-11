@@ -32,7 +32,9 @@ class manage extends Seeder
             DB::table('manages')->insert($store);
         });
         Storage::deleteDirectory('public/manage');
-
+        Storage::deleteDirectory('public/blog');
+        Storage::deleteDirectory('public/galeri');
+        
         Storage::copy('public/asset/hero-m.svg', 'public/manage/jumbotron.svg');
     }
 }

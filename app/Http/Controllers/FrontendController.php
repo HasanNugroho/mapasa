@@ -33,6 +33,7 @@ class FrontendController extends Controller
 
     public function blog($slug)
     {
+        $jenis = "Blog";
         $blog = blog::where('slug', $slug)->first();
         $rekomendasi = blog::where('slug', '!=' , $slug)->latest()->paginate(3);
 
