@@ -14,7 +14,7 @@ $trim_galeri = Str::of($trim_galeri)->trim('/');
 $blog = blog::where('slug', $trim_blog)->first();
 $galeri = galeri::where('slug', $trim_galeri)->first();
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary text-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary text-light">
     <div class="container">
         <a class="navbar-brand text-3" href="{{route('landing')}}">MAPASA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
