@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\manage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-
+use File;
 use Illuminate\Http\Request;
 
 class ManageController extends Controller
@@ -33,10 +33,13 @@ class ManageController extends Controller
         
         $edit_jumbotron = manage::where('id', $request->id)->first();
         if ($request->file('gambar')) {
-            Storage::delete($edit_jumbotron->gambar);
-            
-            $fotoutama = Storage::putFile('public/manage',  $request->gambar->path());
-            $update['gambar'] = $fotoutama;
+            if($request->file('gambar') != "jumbotron.svg"){
+                File::delete(\base_path() .'/public/images/manage/'.$edit_jumbotron->gambar);
+            }
+            $fotoutama = $request->gambar;
+            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
+            $fotoutama->move(\base_path() ."/public/images/manage", $nama_foto);   
+            $update['gambar'] = $nama_foto;
         }
 
         $update['deskripsi'] = $request->deskripsi;

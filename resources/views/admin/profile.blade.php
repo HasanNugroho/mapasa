@@ -54,7 +54,7 @@
                 <div class="card-body text-center">
                     <div class="form-group">
                         <div class="text-center">
-                            <img src="{{ Storage::url($user->foto)}}" alt="Image Preview" style="width: 80%; height: auto;border-radius: 150px; padding:1rem;"
+                            <img src="{{asset('images/admins')}}/{{$user->foto}}" alt="Image Preview" style="width: 80%; height: auto;border-radius: 150px; padding:1rem;"
                                 id="preview">
                         </div>
                         <div class="custom-file mt-3 text-left">

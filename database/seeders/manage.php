@@ -4,6 +4,7 @@ namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use File;
 
 class manage extends Seeder
 {
@@ -20,7 +21,7 @@ class manage extends Seeder
                 'author' => 'superadmin',
                 'deskripsi' => 'Manunggaling Pemuda Mapasa',
                 'keterangan' => 'jumbotron',
-                'gambar' => 'public/manage/jumbotron.svg'
+                'gambar' => 'jumbotron.svg'
             ],
             [
                 'author' => 'superadmin',
@@ -31,10 +32,8 @@ class manage extends Seeder
         $store->each(function ($store) {
             DB::table('manages')->insert($store);
         });
-        Storage::deleteDirectory('public/manage');
-        Storage::deleteDirectory('public/blog');
-        Storage::deleteDirectory('public/galeri');
-        
-        Storage::copy('public/asset/hero-m.svg', 'public/manage/jumbotron.svg');
+        File::deleteDirectory(public_path('images/blog'));
+        File::deleteDirectory(public_path('images/galeri'));
+        File::deleteDirectory(public_path('images/kegiatan'));
     }
 }

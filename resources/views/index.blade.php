@@ -45,7 +45,7 @@ $blog_count = blog::count();
 </div> --}}
 
 {{-- <div class="d-md-none"> --}}
-<div class="hero-utama" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 25%, #ffffff), url({{Storage::url($jumbotron->gambar)}});
+<div class="hero-utama" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 25%, #ffffff), url({{asset('images/manage')}}/{{$jumbotron->gambar}});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

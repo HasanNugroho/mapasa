@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
-
+use File;
 class AdminController extends Controller
 {
     public function index()
@@ -47,11 +47,14 @@ class AdminController extends Controller
                 'foto' => 'file|image|mimes:jpeg,jpg,svg,png,gif'
             ]);
 
-            if (Auth::user()->foto != '') {
-                //delete old image
-                Storage::delete(Auth::user()->foto);
+            if(Auth::user()->foto != "profile1.jpg"){
+                File::delete(\base_path() .'/public/images/admins/'.Auth::user()->foto);
             }
-            $data['foto'] = Storage::putFile('public/admins', request()->file('foto')->path());
+                //delete old image
+            $fotoutama = request()->file('foto');
+            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
+            $fotoutama->move(\base_path() ."/public/images/admins", $nama_foto);   
+            $data['foto'] = $nama_foto;
         }
 
         if (request('password')) {
@@ -105,7 +108,7 @@ class AdminController extends Controller
             'password' => bcrypt($request->password),
             'email' => $request->email,
             'role' => $request->role,
-            'foto' => 'public/admins/profile1.jpg',
+            'foto' => 'profile1.jpg',
         ];
         // dd($data->role);
 
@@ -162,8 +165,9 @@ class AdminController extends Controller
     public function delete($id)
     {
         $delete = User::where('id', $id)->first();
-            Storage::delete($delete);
+        if($delete->foto != "profile1.jpg"){
+            File::delete(\base_path() .'/public/images/admins/'.$delete->foto);
+        }
         $delete->delete();
-        // return json_encode(array('statusCode'=>200));
     }
 }
