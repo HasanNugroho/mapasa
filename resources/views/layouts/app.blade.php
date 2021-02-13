@@ -98,7 +98,7 @@
             },
             breakpoints: {
                 '@0.25': {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 10,
                 },
                 '@0.50': {

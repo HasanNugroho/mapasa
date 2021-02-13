@@ -119,16 +119,17 @@ $blog_count = blog::count();
                         <div class="card-body bg-abu-abu">
                             <div class="d-flex justify-content-between">
                                 <div class="text-5">{{$ag->jam}}</div>
-                                <div class="text-5" style="margin: 0 .8rem">{{$ag->tanggal->isoformat('MMMM')}}</div>
+                                <div class="text-5">{{$ag->tanggal->isoformat('MMMM')}}</div>
                                 <div class="text-5">{{$ag->tanggal->isoformat('YYYY')}}</div>
                             </div>
                             <div class="text-1">
                                 {{$ag->tanggal->isoformat('DD')}}
                             </div>
-                            <div class="text-5">Rumah Sdr/i {{$ag->tempat}}</div>
+                            <div class="text-5">Rumah Sdr/i :</div>
+                            <div class="text-5">{{$ag->tempat}}</div>
                         </div>
                         <div class="card-footer text-uppercase text-4 text-light" style="background-color: #828282;">
-                            {{$ag->kegiatan}}
+                            {{Str::limit($ag->kegiatan,15,'...')}}
                         </div>
                     </div>
                 </div>
@@ -146,7 +147,7 @@ $blog_count = blog::count();
 {{-- Kegiatan terlaksana --}}
 <div class="container" id="kegiatan">
     <div class="bagian">
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex align-items-center justify-content-between mb-3">
             <div class="text-3">Kegiatan Terlaksana</div>
             <div>
                 {{-- <a href="{{route('kegiatan.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a> --}}
@@ -158,7 +159,7 @@ $blog_count = blog::count();
             @foreach ($kegiatan as $kg)
             <div class="col-lg-3 col-md-4 col-sm-6 col-6 mt-2 mb-2">
                 <a href="#" class="lihat-kegiatan" data-id="{{$kg->id}}">
-                    <div class="card bayangan text-center text-dark">
+                    <div class="card bayangan card-kegiatan text-center text-dark">
                         <div class="card-body bg-abu-abu">
                             <div class="d-flex justify-content-between">
                                 <div class="text-5">{{$kg->jam->isoformat('HH:mm')}}</div>
@@ -166,7 +167,7 @@ $blog_count = blog::count();
                             </div>
                             <img class="img-kegiatan img-thumbnail" style="object-fit:cover;"
                                 src="{{ Storage::url($kg->foto_utama)}}" alt="">
-                            <div class="text-4">{{$kg->kegiatan}}</div>
+                            <div class="text-4">{{Str::limit($kg->kegiatan,20,'...')}}</div>
                         </div>
                     </div>
                 </a>
@@ -182,7 +183,7 @@ $blog_count = blog::count();
 {{-- Galeri --}}
 <div class="container" id="galeri">
     <div class="bagian">
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex align-items-center justify-content-between mb-3">
             <div class="text-3">Galeri</div>
             <div>
                 {{-- <a href="{{route('galeri.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a> --}}
@@ -198,7 +199,7 @@ $blog_count = blog::count();
                         <img src="{{ Storage::url(Arr::first(json_decode($ga->gambar)))}}" style="object-fit: cover"
                             class="card-img card-gambar img-thumbnail" alt="...">
                         <div class="card-img-overlay text-center galeri">
-                            <div class="text-4 text-dark">{{$ga->kegiatan}}</div>
+                            <div class="text-4 text-dark">{{Str::limit($ga->kegiatan,20,'...')}}</div>
                         </div>
                     </div>
                 </a>
@@ -214,7 +215,7 @@ $blog_count = blog::count();
 {{-- Blog --}}
 <div class="container" id="blog">
     <div class="bagian">
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex align-items-center justify-content-between mb-3">
             <div class="text-3">Blog</div>
             <div>
                 {{-- <a href="{{route('blog.semua')}}" class="btn btn-sm btn-primary text-5">Lihat semua</a> --}}
@@ -227,9 +228,11 @@ $blog_count = blog::count();
             <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
                 <a href="{{route('blog.front', $bl->slug)}}">
                     <div class="card bayangan">
+                        <div class="text-center">
                         <img src="{{ Storage::url($bl->foto)}}" style="object-fit:cover;"
                             class="card-img-top card-gambar img-thumbnail"
                             style="border-top-left-radius: 10px; border-top-right-radius: 10px;" alt="...">
+                        </div>
                         <div class="card-footer ">
                             <div class="text-4 text-dark">{{Str::limit($bl->title,25,'...')}}</div>
                             <div class="text-5 mt-1 text-secondary">{{$bl->created_at->isoformat('DD MMMM YYYY')}}</div>

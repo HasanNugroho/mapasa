@@ -52,34 +52,28 @@ p{
 }
 
 .text-1 {
-    line-height: 2.5rem;
     font-size: 90px;
 }
 
 .text-2 {
-    line-height: 2.5rem;
     font-size: 46px;
     font-weight: 500;
 }
 
 .text-3 {
-    line-height: 2.5rem;
     font-size: 24px;
     font-weight: 500;
 }
 
 .text-4 {
-    line-height: 2.5rem;
     font-size: 18px;
     font-weight: 500;
 }
 
 .text-5 {
-    line-height: 1.5rem;
     font-size: 16px;
 }
 .text-6 {
-    line-height: 2.5rem;
     font-size: 14px;
 }
 
@@ -95,7 +89,6 @@ p{
 }
 .text-blog{
     font-size: 16px;
-    line-height: 30px;
 }
 
 .text-link {
@@ -274,13 +267,19 @@ p{
     align-items: center;
   }
 /* swipper end */
-
+.card-agenda{
+    width: 220px !important;
+}
 /* Agenda end */
 /* kegiatan */
 .img-kegiatan{
     width: 225px;
     height: 150px;
     margin: 1rem 0;
+}
+.card-kegiatan{
+    width: 220px !important;
+    height: auto;
 }
 /* kegiatan end */
 /* Galeri */
@@ -403,6 +402,9 @@ p{
     .hero-utama {
         height: 500px;
     }
+    .card-kegiatan{
+        width: 100% !important;
+    }
 }
 
 @media(max-width: 960px) {
@@ -412,6 +414,9 @@ p{
     .iconify {
         width: 25px;
         height: 25px;
+    }
+    .card-kegiatan{
+        width: 100% !important;
     }
 }
 
@@ -439,8 +444,8 @@ p{
         height: 100px !important;
     }
     .card-gambar{
-        width: 180px;
-        height:100px;
+        width: 100%;
+        height:120px;
     }
     .hero-utama {
         height: 300px;
@@ -449,14 +454,23 @@ p{
         width: 25px;
         height: 25px;
     }
+    .card-kegiatan{
+        width: 100% !important;
+    }
 }
 
 @media(max-width: 400px) {
     .card-gambar{
-        width: 160px;
-        height:100px;
+        width: 100%;
     }
     .hero-utama {
         height: 250px;
+    }
+    .bg-abu-abu{
+        padding: .5rem !important;
+    }
+    .card-kegiatan{
+        width: 100% !important;
+        height: auto;
     }
 }
