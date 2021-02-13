@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class GaleriController extends Controller
 {
@@ -32,7 +33,9 @@ class GaleriController extends Controller
         {
             foreach($request->file('gambar') as $image)
             {
-                $imgname = Storage::putFile('public/galeri',  $image->path());
+                // $gambar = $request->gambar;
+                $imgname =$image->getClientOriginalName();
+                $image->move(\base_path() ."/public/images/galeri", $imgname);
                 $data[] = $imgname;  
             }
         }
@@ -81,15 +84,17 @@ class GaleriController extends Controller
         // update multiple gambar
         if($request->hasfile('gambar')){
             foreach(json_decode($targetItem->gambar) as $hapus){
-                Storage::delete($hapus);
+                // Storage::delete($hapus);
+                File::delete(\base_path() .'/public/images/galeri/'.$hapus);
             }
             if($request->hasfile('gambar')){
                 foreach($request->file('gambar') as $image)
-                {
-                    $imgname = Storage::putFile('public/galeri',  $image->path());
-                    $update_gambar[] = $imgname;
-                    $update['gambar'] = json_encode($update_gambar);
+                {                 
+                    $imgname =$image->getClientOriginalName();
+                    $image->move(\base_path() ."/public/images/galeri", $imgname);
+                    $update_gambar[] = $imgname;  
                 }
+                $update['gambar'] = json_encode($update_gambar);
             }
         }
         if($request->kegiatan){
@@ -109,7 +114,7 @@ class GaleriController extends Controller
     {
         $delete = galeri::find($id);
         foreach(json_decode($delete->gambar) as $hapus){
-            Storage::delete($hapus);
+            File::delete(\base_path() .'/public/images/galeri/'.$hapus);
         }
         $delete->delete();
 

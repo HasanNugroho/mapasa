@@ -193,10 +193,11 @@ $blog_count = blog::count();
         @if ($galeri_count != 0)
         <div class="row">
             @foreach ($galeri as $ga)
+            <?php $gambar = Arr::first(json_decode($ga->gambar))?>
             <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
                 <a href="{{route('galeri.front', $ga->slug)}}">
                     <div class="card card-gambar bayangan text-white">
-                        <img src="{{ Storage::url(Arr::first(json_decode($ga->gambar)))}}" style="object-fit: cover"
+                        <img src="{{asset('images/galeri')}}/{{$gambar}}" style="object-fit: cover"
                             class="card-img card-gambar img-thumbnail" alt="...">
                         <div class="card-img-overlay text-center galeri">
                             <div class="text-4 text-dark">{{Str::limit($ga->kegiatan,20,'...')}}</div>

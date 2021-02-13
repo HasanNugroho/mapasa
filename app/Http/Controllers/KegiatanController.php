@@ -35,7 +35,9 @@ class KegiatanController extends Controller
         $data = [];
         if($request->hasfile('foto_utama'))
         {
-            $fotoutama = Storage::putFile('public/galeri',  $request->foto_utama->path());
+            $gambar = $request->foto_utama;
+            $fotoutama =$gambar->getClientOriginalName();
+            $gambar->move(\base_path() ."/public/images/kegiatan", $fotoutama);
         }
         // dd($request);
         kegiatan::create([

@@ -15,17 +15,19 @@
         <div class="bagian">
             <div class="row">
                 @foreach ($data as $da)
-                <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
-                    <a href="{{route('galeri.front', $da->slug)}}">
-                        <div class="card card-gambar bayangan text-white">
-                            <img src="{{ Storage::url(Arr::first(json_decode($da->gambar)))}}" style="object-fit: cover" class="card-img card-gambar img-thumbnail" alt="...">
-                            <div class="card-img-overlay text-center galeri">
-                                <div class="text-4 text-dark">{{$da->kegiatan}}</div>
-                            </div>
+            <?php $gambar = Arr::first(json_decode($da->gambar))?>
+            <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
+                <a href="{{route('galeri.front', $da->slug)}}">
+                    <div class="card card-gambar bayangan text-white">
+                        <img src="{{asset('images/galeri')}}/{{$gambar}}" style="object-fit: cover"
+                            class="card-img card-gambar img-thumbnail" alt="...">
+                        <div class="card-img-overlay text-center galeri">
+                            <div class="text-4 text-dark">{{Str::limit($da->kegiatan,20,'...')}}</div>
                         </div>
-                        </a>
-                </div>
-                @endforeach
+                    </div>
+                </a>
+            </div>
+            @endforeach
             </div>
         </div>
         @else

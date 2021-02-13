@@ -6,7 +6,7 @@
         <div class="row">
             <?php foreach (json_decode($data->gambar) as $g) {  ?>
             <div class="col-md-4 col-6 mt-2 mb-2">
-                <img src="{{ Storage::url($g)}}" class="img-fluid" alt="">
+                <img src="{{asset('images/galeri')}}/{{$g}}" class="img-fluid" alt="">
             </div>
             <?php } ?>
         </div>

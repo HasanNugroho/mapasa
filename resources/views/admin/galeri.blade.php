@@ -30,9 +30,10 @@ use Illuminate\Support\Arr;
             <div class="card-body">
                 <div class="row">
                     @foreach ($galeri as $g)
+                    <?php $gambar = Arr::first(json_decode($g->gambar))?>
                     <div class="col-md-3 col-6">
                         <div class="card">
-                            <img src="{{ Storage::url(Arr::first(json_decode($g->gambar)))}}" class="card-img-top" alt="...">
+                            <img src="{{asset('images/galeri')}}/{{$gambar}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-text">{{$g->kegiatan}}</h5>
                                 @if (Auth::user()->role == "superadmin")

@@ -29,7 +29,9 @@ class EventController extends Controller
 
         if($request->hasfile('pamflet'))
         {
-            $fotoutama = Storage::putFile('public/galeri',  $request->pamflet->path());
+            $fotoutama = $request->pamflet;
+            $nama_foto =$fotoutama->getClientOriginalName();
+            $fotoutama->move(\base_path() ."/public/images/event", $nama_foto);
         }
         if($request->kegiatan){
             foreach ($request->kegiatan as $key => $value) {
@@ -59,7 +61,7 @@ class EventController extends Controller
         }
         // dd($request);
         $store = [
-            'pamflet' => $fotoutama,
+            'pamflet' => $nama_foto,
             'nama_event' => $request->nama_event,
             'slug' => Str::slug($request->nama_event),
             'deskripsi' => $request->deskripsi,

@@ -29,11 +29,13 @@ class BlogController extends Controller
 
         if($request->hasfile('foto'))
         {
-            $fotoutama = Storage::putFile('public/blog',  $request->foto->path());
+            $fotoutama = $request->foto;
+            $nama_foto =$fotoutama->getClientOriginalName();
+            $fotoutama->move(\base_path() ."/public/images/blog", $nama_foto);
         }
         // dd($request);
         blog::create([
-            'foto' => $fotoutama,
+            'foto' => $nama_foto,
             'title' => $request->title,
             'author' => Auth::user()->name,
             'slug' => Str::slug($request->title),
