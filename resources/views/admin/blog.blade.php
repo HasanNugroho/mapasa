@@ -37,7 +37,7 @@
                         @foreach ($blog as $key => $e)
                             <tr>
                                 <th scope="row">{{$blog->firstItem()+$key}}</th>
-                                <td><img src="{{ Storage::url($e->foto)}}" style="max-width: 100px; height: auto; margin: 0 .2rem;" alt=""></td>
+                                <td><img src="{{asset('images/blog')}}/{{$e->foto}}" style="max-width: 100px; height: auto; margin: 0 .2rem;" alt=""></td>
                                 <td>{{$e->title}}</td>
                                 @if (Auth::user()->role == "superadmin")
                                 <td>{{$e->author}}</td>
@@ -87,11 +87,10 @@
                     </div>
                     <div class="form-group">
                         <label for="diskripsi">Artikel</label>
-                        <div class="col-md-12">
                             <textarea rows="15" id="konten"
                                 class="form-control form-control-line  @error('diskripsi') is-invalid @enderror"
-                                name="artikel" placeholder=""></textarea>
-                        </div>
+                                name="artikel" placeholder="">
+                            </textarea>
                     </div>
             </div>
             <div class="modal-footer">

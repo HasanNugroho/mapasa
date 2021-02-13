@@ -2,7 +2,7 @@
 @section('title', 'Event | MAPASA')
 @section('content')
 <div class="hero-event">
-    <div class="img-event" style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%), url({{Storage::url($data->pamflet)}});
+    <div class="img-event" style="background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%), url({{asset('images/event')}}/{{$data->pamflet}});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

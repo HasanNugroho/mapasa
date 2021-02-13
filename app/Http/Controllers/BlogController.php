@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use File;
 class BlogController extends Controller
 {
     public function index()
@@ -30,7 +30,7 @@ class BlogController extends Controller
         if($request->hasfile('foto'))
         {
             $fotoutama = $request->foto;
-            $nama_foto =$fotoutama->getClientOriginalName();
+            $nama_foto =time()."_".$fotoutama->getClientOriginalName();
             $fotoutama->move(\base_path() ."/public/images/blog", $nama_foto);
         }
         // dd($request);
@@ -68,10 +68,13 @@ class BlogController extends Controller
         
         $edit_blog = blog::where('id', $request->id)->first();
         if ($request->file('foto')) {
-            Storage::delete($edit_blog->foto);
+            File::delete(\base_path() .'/public/images/blog/'.$edit_blog->foto);
             
-            $fotoutama = Storage::putFile('public/blog',  $request->foto->path());
-            $update['foto'] = $fotoutama;
+            $fotoutama = $request->foto;
+            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
+            $fotoutama->move(\base_path() ."/public/images/blog", $nama_foto);
+
+            $update['foto'] = $nama_foto;
         }
 
         if ($request->artikel) {
@@ -89,7 +92,7 @@ class BlogController extends Controller
     public function hapus($id)
     {
         $delete = blog::where('id', $id)->first();
-        Storage::delete($delete->foto);
+        File::delete(\base_path() .'/public/images/blog/'.$delete->foto);
         $delete->delete();
 
         // return redirect()->back();

@@ -166,7 +166,7 @@ $blog_count = blog::count();
                                 <div class="text-5">{{$kg->tanggal->isoformat('DD MMMM YYYY')}}</div>
                             </div>
                             <img class="img-kegiatan img-thumbnail" style="object-fit:cover;"
-                                src="{{ Storage::url($kg->foto_utama)}}" alt="">
+                                src="{{asset('images/kegiatan')}}/{{$kg->foto_utama}}" alt="">
                             <div class="text-4">{{Str::limit($kg->kegiatan,20,'...')}}</div>
                         </div>
                     </div>
@@ -230,7 +230,7 @@ $blog_count = blog::count();
                 <a href="{{route('blog.front', $bl->slug)}}">
                     <div class="card bayangan">
                         <div class="text-center">
-                        <img src="{{ Storage::url($bl->foto)}}" style="object-fit:cover;"
+                        <img src="{{asset('images/blog')}}/{{$bl->foto}}" style="object-fit:cover;"
                             class="card-img-top card-gambar img-thumbnail"
                             style="border-top-left-radius: 10px; border-top-right-radius: 10px;" alt="...">
                         </div>

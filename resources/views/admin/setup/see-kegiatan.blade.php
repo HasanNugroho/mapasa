@@ -1,4 +1,4 @@
-    <img src="{{ Storage::url($data->foto_utama)}}" class="img-fluid" alt="">
+    <img src="{{asset('images/kegiatan')}}/{{$data->foto_utama}}" class="img-fluid" alt="">
 
     <div class="bagian-blog">
         <div class="row">

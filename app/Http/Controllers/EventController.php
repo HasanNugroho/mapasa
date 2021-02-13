@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use File;
 class EventController extends Controller
 {
     public function index()
@@ -30,7 +30,7 @@ class EventController extends Controller
         if($request->hasfile('pamflet'))
         {
             $fotoutama = $request->pamflet;
-            $nama_foto =$fotoutama->getClientOriginalName();
+            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
             $fotoutama->move(\base_path() ."/public/images/event", $nama_foto);
         }
         if($request->kegiatan){
@@ -94,10 +94,12 @@ class EventController extends Controller
         $edit_event = event::where('id', $request->id)->first();
         // dd($edit_event);
         if ($request->file('pamflet')) {
-            Storage::delete($edit_event->pamflet);
+            File::delete(\base_path() .'/public/images/event/'.$edit_event->pamflet);
             
-            $fotoutama = Storage::putFile('public/galeri',  $request->pamflet->path());
-            $update['pamflet'] = $fotoutama;
+            $fotoutama = $request->pamflet;
+            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
+            $fotoutama->move(\base_path() ."/public/images/event", $nama_foto);            
+            $update['pamflet'] = $nama_foto;
         }
 
         if ($request->deskripsi) {
@@ -140,7 +142,7 @@ class EventController extends Controller
     public function hapus($id)
     {
         $delete = event::where('id', $id)->first();
-        Storage::delete($delete->pamflet);
+        File::delete(\base_path() .'/public/images/event/'.$delete->pamflet);
         $delete->delete();
 
         // return redirect()->back();

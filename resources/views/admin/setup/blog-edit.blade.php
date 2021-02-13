@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <input type="hidden" name="id" value="{{$data->id}}">
                         <div class="text-center">
-                            <img src="{{Storage::url($data->foto)}}" alt="Image Preview" class="img-fluid"
+                            <img src="{{asset('images/blog')}}/{{$data->foto}}" alt="Image Preview" class="img-fluid"
                                 id="preview">
                         </div>
                         <div class="custom-file mt-3">
@@ -31,12 +31,10 @@
                     </div>
                     <div class="form-group">
                         <label for="diskripsi">Artikel</label>
-                        <div class="col-md-12">
                             <textarea rows="15" id="konten"
                                 class="form-control form-control-line  @error('diskripsi') is-invalid @enderror"
                                 name="artikel">{{$data->artikel}}</textarea>
                         </div>
-                    </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>

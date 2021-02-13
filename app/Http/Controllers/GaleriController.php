@@ -23,31 +23,42 @@ class GaleriController extends Controller
     // store gambar
     public function store(Request $request)
     {
-        $validateImageData = $request->validate([
+        $validateImageData = [
             'link' => 'required',
             'kegiatan' => 'required',
             'gambar' => 'required',
             'gambar.*' => 'mimes:jpg,png,jpeg,gif,svg'
-        ]);
-        if($request->hasfile('gambar'))
+        ];
+
+        if ($request->validate($validateImageData)) {
+            if($request->hasfile('gambar'))
         {
             foreach($request->file('gambar') as $image)
             {
                 // $gambar = $request->gambar;
-                $imgname =$image->getClientOriginalName();
+                $imgname = time()."_".$image->getClientOriginalName();
                 $image->move(\base_path() ."/public/images/galeri", $imgname);
                 $data[] = $imgname;  
             }
         }
-        galeri::create([
+        $store = [
             'gambar' => json_encode($data),
             'kegiatan' => $request->kegiatan,
             'link' => $request->link,
             'slug' => Str::random(5),
             'author' => Auth::user()->name,
-        ]);
-        session()->flash('message', "Swal.fire('Success','Foto berhasil ditambah','success')");
-        return redirect('/dashboard/galeri');
+        ];
+        if(galeri::create($store)){
+            session()->flash('message', "Swal.fire('Success','Foto berhasil ditambah','success')");
+        }else{
+            session()->flash('message', "Swal.fire('Error','Foto gagal ditambah','error')");
+        }
+    } else {
+        session()->flash('message', "Swal.fire('Error','Foto gagal ditambah','error')");
+    }
+    return redirect('/dashboard/galeri');
+        
+        
     }
     // lihat gambar
     public function see($id)
@@ -84,7 +95,6 @@ class GaleriController extends Controller
         // update multiple gambar
         if($request->hasfile('gambar')){
             foreach(json_decode($targetItem->gambar) as $hapus){
-                // Storage::delete($hapus);
                 File::delete(\base_path() .'/public/images/galeri/'.$hapus);
             }
             if($request->hasfile('gambar')){

@@ -38,7 +38,7 @@
                         @foreach ($kegiatan as $key => $k)
                             <tr>
                                 <th scope="row">{{$kegiatan->firstItem()+$key}}</th>
-                                <td><img src="{{ Storage::url($k->foto_utama)}}" style="width: 100px; height: 100px; margin: 0 .2rem;" alt=""></td>
+                                <td><img src="{{asset('images/kegiatan')}}/{{$k->foto_utama}}" style="width: 100px; height: 100px; margin: 0 .2rem;" alt=""></td>
                                 <td>{{$k->kegiatan}}</td>
                                 <td>{{$k->jam}}</td>
                                 <td>{{$k->tanggal->isoFormat('dddd, Do MMMM YYYY')}}</td>

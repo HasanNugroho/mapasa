@@ -40,7 +40,7 @@
         <div class="text-3 mb-2">Terbaru</div>
         <div class="row d-flex align-items-center">
             <div class="col-md-6 col-sm-12">
-                <img src="{{ Storage::url($preview->foto)}}" class="hero-img" alt="">
+                <img src="{{asset('images/blog')}}/{{$preview->foto}}" class="hero-img" alt="">
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="text-3">{{$preview->title}}</div>
@@ -61,7 +61,7 @@
                 <div class="col-lg-4 col-sm-6 col-6 mt-2 mb-2">
                     <a href="{{route('blog.front', $da->slug)}}">
                         <div class="card bayangan">
-                            <img src="{{ Storage::url($da->foto)}}" style="object-fit:cover;" class="card-img-top card-gambar img-thumbnail"
+                            <img src="{{asset('images/blog')}}/{{$da->foto}}" style="object-fit:cover;" class="card-img-top card-gambar img-thumbnail"
                             style="border-top-left-radius: 10px; border-top-right-radius: 10px;" alt="...">                            
                             <div class="card-footer ">
                                 <div class="text-4 text-dark">{{$da->title}}</div>
@@ -93,7 +93,7 @@
                                     <div class="text-5">{{$da->jam->isoformat('HH:mm')}}</div>
                                     <div class="text-5">{{$da->tanggal->isoformat('DD MMMM YYYY')}}</div>
                                 </div>
-                                <img class="img-kegiatan img-thumbnail" style="object-fit:cover;" src="{{ Storage::url($da->foto_utama)}}" alt="">
+                                <img class="img-kegiatan img-thumbnail" style="object-fit:cover;" src="{{asset('images/kegiatan')}}/{{$da->foto_utama}}" alt="">
                                 <div class="text-4">{{$da->kegiatan}}</div>
                             </div>
                         </div>

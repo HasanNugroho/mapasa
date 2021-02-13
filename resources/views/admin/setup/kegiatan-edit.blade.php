@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="text-center">
-                                    <img src="{{Storage::url($data->foto_utama)}}" alt="Image Preview" class="img-fluid"
+                                    <img src="{{asset('images/kegiatan')}}/{{$data->foto_utama}}" alt="Image Preview" class="img-fluid"
                                         id="preview">
                                 </div>
                                 <div class="custom-file mt-3">
@@ -60,17 +60,6 @@
 <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
 <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 {{-- script --}}
-<script src="{{asset('/vendor/ckeditor/ckeditor.js')}}"></script>
-{{-- text editor --}}
-<script>
-    var konten = document.getElementById("konten");
-    CKEDITOR.replace(konten, {
-        language: 'en-gb'
-    });
-    CKEDITOR.config.allowedContent = true;
-
-</script>
-
 {{-- preview img --}}
 <script>
     function loadFile(event) {

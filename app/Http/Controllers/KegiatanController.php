@@ -5,7 +5,7 @@ use App\Models\kegiatan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
+use File;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -36,7 +36,7 @@ class KegiatanController extends Controller
         if($request->hasfile('foto_utama'))
         {
             $gambar = $request->foto_utama;
-            $fotoutama =$gambar->getClientOriginalName();
+            $fotoutama =time()."_".$gambar->getClientOriginalName();
             $gambar->move(\base_path() ."/public/images/kegiatan", $fotoutama);
         }
         // dd($request);
@@ -65,12 +65,15 @@ class KegiatanController extends Controller
         $data = [
             'kegiatan' => 'required',
             'keterangan' => 'required',
-            'jam' => 'required',
         ];
 
         // validasi tanggal
-        if($request->tanggal != null){
+        if($request->tanggal){
             $data['tanggal'] = 'required';
+        }
+        // validasi jam
+        if($request->jam){
+            $data['jam'] = 'required';
         }
         // validasi foto utama
         if($request->file('foto_utama')){
@@ -82,17 +85,22 @@ class KegiatanController extends Controller
         if($request->tanggal){
             $update['tanggal'] = $request->tanggal;
         }
+        // update jam
+        if($request->jam){
+            $update['jam'] = $request->jam;
+        }
         // update foto utama
         $targetItem = kegiatan::where('id', $request->id)->first();
         if($request->file('foto_utama')){
-            Storage::delete($targetItem->foto_utama);
+            File::delete(\base_path() .'/public/images/kegiatan/'.$targetItem->foto_utama);
 
-            $fotoutama = Storage::putFile('public/galeri',  $request->foto_utama->path());
+            $gambar = $request->foto_utama;
+            $fotoutama =time()."_".$gambar->getClientOriginalName();
+            $gambar->move(\base_path() ."/public/images/kegiatan", $fotoutama);
             $update['foto_utama'] = $fotoutama;
         }
         $update['kegiatan'] = $request->kegiatan;
         $update['keterangan'] = $request->keterangan;
-        $update['jam'] = $request->jam;
 
         kegiatan::where('id', $request->id)->update($update);
 
@@ -103,7 +111,7 @@ class KegiatanController extends Controller
     public function hapus($id)
     {
         $delete = kegiatan::where('id', $id)->first();
-        Storage::delete($delete->foto_utama);
+        File::delete(\base_path() .'/public/images/kegiatan/'.$delete->foto_utama);
         $delete->delete();
 
         session()->flash('message', "Swal.fire('Success','Kegiatan berhasil dihapus','success')");

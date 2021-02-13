@@ -74,20 +74,20 @@
                             class="img-fluid" id="preview">
                         </div>
                         <div class="custom-file mt-3">
-                            <input id="gambar" class="custom-file-input" type="file" name="pamflet"
+                            <input id="gambar" class="custom-file-input" type="file" name="pamflet" required
                                 onchange="loadFile(event)">
                             <label for="my-input" class="custom-file-label" id="labelimg">Jumbotron(foto header)</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="event">Nama event</label>
-                        <input type="text" class="form-control" id="event" name="nama_event">
+                        <input type="text" class="form-control" id="event" name="nama_event" required>
                     </div>
                     <div class="form-group">
                         <label for="diskripsi">Deskripsi</label>
                         <textarea rows="15" id="konten"
                             class="form-control form-control-line  @error('diskripsi') is-invalid @enderror"
-                            name="deskripsi" placeholder=""></textarea>
+                            name="deskripsi" placeholder="" required></textarea>
                     </div>
                     <div class="form-group">
                         <div class="d-flex align-items-center">
