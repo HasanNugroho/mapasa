@@ -17,7 +17,7 @@
                         <input type="hidden" name="id" value="{{$data->id}}">
                         <div class="text-center">
                             <img src="{{Storage::url($data->pamflet)}}" alt="Image Preview"
-                                style="max-width: 400px; height: auto;" id="preview">
+                            class="img-fluid" id="preview">
                         </div>
                         <div class="custom-file mt-3">
                             <input id="gambar" class="custom-file-input" type="file" name="pamflet"

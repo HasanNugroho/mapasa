@@ -19,7 +19,7 @@
                             @if ($keterangan == 'jumbotron')
                             <div class="form-group">
                                 <div class="text-center">
-                                    <img src="{{Storage::url($data->gambar)}}" alt="Image Preview" style="max-width: 400px; height: auto;"
+                                    <img src="{{Storage::url($data->gambar)}}" alt="Image Preview" class="img-fluid"
                                         id="preview">
                                 </div>
                                 <div class="custom-file mt-3">

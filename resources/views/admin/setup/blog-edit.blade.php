@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <input type="hidden" name="id" value="{{$data->id}}">
                         <div class="text-center">
-                            <img src="{{Storage::url($data->foto)}}" alt="Image Preview" style="max-width: 400px; height: auto;"
+                            <img src="{{Storage::url($data->foto)}}" alt="Image Preview" class="img-fluid"
                                 id="preview">
                         </div>
                         <div class="custom-file mt-3">

@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <div class="text-center">
                             <img src="{{ asset('images') }}/image-preview.png" alt="Image Preview"
-                                style="max-width: 400px; height: auto;" id="preview">
+                            class="img-fluid" id="preview">
                         </div>
                         <div class="custom-file mt-3">
                             <input id="gambar" class="custom-file-input" type="file" name="pamflet"

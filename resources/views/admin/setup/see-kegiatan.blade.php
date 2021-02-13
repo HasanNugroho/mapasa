@@ -1,4 +1,4 @@
-    <img src="{{ Storage::url($data->foto_utama)}}" class="hero-img" alt="">
+    <img src="{{ Storage::url($data->foto_utama)}}" class="img-fluid" alt="">
 
     <div class="bagian-blog">
         <div class="row">

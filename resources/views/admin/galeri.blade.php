@@ -68,7 +68,7 @@ use Illuminate\Support\Arr;
                             <div class="form-group">
                                 <label for="tali" class="form-label">Foto Kegiatan</label>
                                 <input type="file" name="gambar[]" id="images" class="form-control" multiple>
-                                <div class="form-text">Bisa menginput banyak foto (Memasukan foto dengan memblok foto yang akan di upload)
+                                <div class="form-text">Bisa menginput banyak foto (Memasukan foto dengan memblok foto yang akan di upload) <div class="text-danger">(max: 5)</div>
                                 </div>
                             </div>
                         </div>
