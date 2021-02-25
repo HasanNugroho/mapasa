@@ -37,8 +37,14 @@
                                 <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi" rows="3">{{$data->deskripsi}}</textarea>
                             </div>
                             @elseif($keterangan == 'sejarah')
+                                <div class="mb-3 col-mb-12 ">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if ($data->status) checked @endif name="status">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Menampilkan pada web</label>
+                                    </div>
+                                </div>
                                 <div class="mb-3 col-mb-12">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Sejarah</label>
+                                    <label for="exampleFormControlTextarea1" class="form-label mb-3">Sejarah</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi" rows="3">{{$data->deskripsi}}</textarea>
                                 </div>
                             @endif

@@ -15,6 +15,15 @@ class AgendaController extends Controller
         }else{
             $agenda = agenda::where('author', Auth::user()->name)->paginate(5);
         }
+        $now = \Carbon\Carbon::now();
+        $dateline_tanggal = agenda::where('tanggal',"<=", $now->format('Y-m-d'))->first();
+        if($dateline_tanggal){
+            $dateline_jam = agenda::where('jam',"<=", $now->format('H:i'))->first();
+            if($dateline_jam){
+                $dateline_jam->delete();
+            }
+        }
+        
         return view('admin.agenda', compact('agenda'));
     }
     // tambah agenda

@@ -17,6 +17,7 @@ class CreateManagesTable extends Migration
             $table->id();
             $table->string('gambar')->nullable();
             $table->string('judul')->nullable();
+            $table->string('status')->nullable();
             $table->text('deskripsi')->nullable();
             $table->text('author')->nullable();
             $table->string('keterangan');

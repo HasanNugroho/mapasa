@@ -27,6 +27,7 @@ class manage extends Seeder
                 'author' => 'superadmin',
                 'deskripsi' => 'Sejarah dari mapasa',
                 'keterangan' => 'sejarah',
+                'status' => 'on',
             ]
         ]);
         $store->each(function ($store) {

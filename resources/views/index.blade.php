@@ -25,26 +25,6 @@ $blog_count = blog::count();
     </marquee>
 </div>
 @endif
-
-
-{{-- Hero --}}
-{{-- <div class="d-none d-md-block">
-    <div class="container">
-        <div class="row hero align-items-center">
-            <div class="col-md-6">
-                <div class="text-2">MAPASA</div>
-                <div class="text-3">Manunggaling Pemuda Salakan</div>
-                <a href="#agenda" class="btn btn-md btn-primary text-4 mt-4">Selengkapnya</a>
-            </div>
-            <div class="col-md-6">
-                <div id="hero-img-line"></div>
-                <img src="{{asset('images/jumbotron.png')}}" class="hero-img" alt="gambar anggota mapasa">
-</div>
-</div>
-</div>
-</div> --}}
-
-{{-- <div class="d-md-none"> --}}
 <div class="hero-utama" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 25%, #ffffff), url({{asset('images/manage')}}/{{$jumbotron->gambar}});
     background-position: center;
     background-size: cover;
@@ -63,6 +43,7 @@ $blog_count = blog::count();
 {{-- Hero end --}}
 
 {{-- Sejarah --}}
+@if ($sejarah->status)
 <div class="container">
     <div class="bagian">
         <div class="text-center">
@@ -72,6 +53,7 @@ $blog_count = blog::count();
         </div>
     </div>
 </div>
+@endif
 {{-- Sejarah End --}}
 
 {{-- Event --}}

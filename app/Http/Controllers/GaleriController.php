@@ -24,7 +24,6 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $validateImageData = [
-            'link' => 'required',
             'kegiatan' => 'required',
             'gambar' => 'required',
             'gambar.*' => 'mimes:jpg,png,jpeg,gif,svg'

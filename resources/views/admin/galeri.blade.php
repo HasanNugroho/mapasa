@@ -67,9 +67,9 @@ use Illuminate\Support\Arr;
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="tali" class="form-label">Foto Kegiatan</label>
+                                <label for="tali" class="form-label">Foto Kegiatan <small class="text-right">(Usahakan compress foto terlebih dahulu!)</small></label>
                                 <input type="file" name="gambar[]" id="images" class="form-control" multiple>
-                                <div class="form-text">Bisa menginput banyak foto (Memasukan foto dengan memblok foto yang akan di upload) <div class="text-danger">(max: 5)</div>
+                                <div class="form-text">Bisa menginput banyak foto (Memasukan foto dengan memblok foto yang akan di upload) <small class="text-danger">(max: 5)</small>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ use Illuminate\Support\Arr;
                             <input type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Rapat rutin">
                         </div>
                         <div class="mb-3 col-mb-12">
-                            <label for="link" class="form-label">Link Foto</label>
+                            <label for="link" class="form-label">Link Foto <small>(optional)</small></label>
                             <input type="text" class="form-control" id="link" name="link" placeholder="https://youtube.com">
                             <div id="emailHelp" class="form-text">Link foto (Google Drive atau could storage lainnya)</div>
                         </div>

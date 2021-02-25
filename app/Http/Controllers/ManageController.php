@@ -72,6 +72,7 @@ class ManageController extends Controller
         
         $edit_sejarah = manage::where('id', $request->id)->first();
 
+        $update['status'] = $request->status;
         $update['deskripsi'] = $request->deskripsi;
         $update['author'] = Auth::user()->name;
 
