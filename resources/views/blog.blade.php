@@ -10,7 +10,7 @@ $blog_count = blog::count();
         @if ($blog)
         {{-- content --}}
         <div class="col-lg-8">
-            <img src="{{asset('images/blog')}}/{{$blog->foto}}" style="width: 100%; height: auto" class="hero-img" alt="">
+            <img src="{{asset('images/blog')}}/{{$blog->foto}}" class="hero-img" alt="">
             <div class="text-judul-blog">{{$blog->title}}</div>
             <div class="d-flex align-items-center justify-content-between mt-2">
                 <div class="text-5">Penulis : {{$blog->author}}</div>

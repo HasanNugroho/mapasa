@@ -1,6 +1,5 @@
-    <div class="text-center">
-        <img src="{{asset('images/kegiatan')}}/{{$data->foto_utama}}" class="img-fluid" style="width: 100%; height: auto" alt="">
-    </div>
+    <img src="{{asset('images/kegiatan')}}/{{$data->foto_utama}}" class="img-fluid" alt="">
+
     <div class="bagian-blog">
         <div class="row">
             <div class="col-md-4 col-6">

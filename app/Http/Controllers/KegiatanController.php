@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use File;
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class KegiatanController extends Controller
 {
@@ -28,7 +27,7 @@ class KegiatanController extends Controller
             'keterangan' => 'required',
             'tanggal' => 'required',
             'jam' => 'required',
-            'foto_utama' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+            'foto_utama' => 'required',
         ]);
         // dd($request);
 
@@ -38,10 +37,7 @@ class KegiatanController extends Controller
         {
             $gambar = $request->foto_utama;
             $fotoutama =time()."_".$gambar->getClientOriginalName();
-            $img = Image::make($gambar->path());
-            $img->resize(750, 750, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(\base_path().'/public/images/kegiatan/'.$fotoutama)->filesize(); 
+            $gambar->move(\base_path() ."/public/images/kegiatan", $fotoutama);
         }
         // dd($request);
         kegiatan::create([
@@ -100,11 +96,7 @@ class KegiatanController extends Controller
 
             $gambar = $request->foto_utama;
             $fotoutama =time()."_".$gambar->getClientOriginalName();
-            $img = Image::make($gambar->path());
-            $img->resize(750, 750, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(\base_path().'/public/images/kegiatan/'.$fotoutama); 
-
+            $gambar->move(\base_path() ."/public/images/kegiatan", $fotoutama);
             $update['foto_utama'] = $fotoutama;
         }
         $update['kegiatan'] = $request->kegiatan;

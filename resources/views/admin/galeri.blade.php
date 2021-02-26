@@ -67,7 +67,7 @@ use Illuminate\Support\Arr;
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="tali" class="form-label">Foto Kegiatan</label>{{-- <small class="text-right">(Usahakan compress foto terlebih dahulu!)</small> --}}
+                                <label for="tali" class="form-label">Foto Kegiatan <small class="text-right">(Usahakan compress foto terlebih dahulu!)</small></label>
                                 <input type="file" name="gambar[]" id="images" class="form-control" multiple>
                                 <div class="form-text">Bisa menginput banyak foto (Memasukan foto dengan memblok foto yang akan di upload) <small class="text-danger">(max: 5)</small>
                                 </div>
@@ -144,8 +144,6 @@ use Illuminate\Support\Arr;
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
 <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">{{-- preview img --}}
-<script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
-
 <script>
     $(function () {
         // Multiple images preview with JavaScript

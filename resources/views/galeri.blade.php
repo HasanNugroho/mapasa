@@ -26,7 +26,7 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
         </div>
-        @if ($galeri->link)
+        @if ($galeri->status == "on")
         <div class="bagian-blog">
             <div id="linkto" class="text-4 mb-1">Jika ingin download atau lihat foto. Akses link dibawah:</div>
             <a href="{{$galeri->link}}" for="linkto" target="_blank"

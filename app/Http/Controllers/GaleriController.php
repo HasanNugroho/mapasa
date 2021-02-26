@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use File;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class GaleriController extends Controller
 {
@@ -24,23 +23,20 @@ class GaleriController extends Controller
     // store gambar
     public function store(Request $request)
     {
-        
         $validateImageData = [
             'kegiatan' => 'required',
             'gambar' => 'required',
-            'gambar.*' => 'required'
+            'gambar.*' => 'mimes:jpg,png,jpeg,gif,svg'
         ];
-        
+
         if ($request->validate($validateImageData)) {
             if($request->hasfile('gambar'))
         {
             foreach($request->file('gambar') as $image)
             {
-                $imgname =time()."_".$image->getClientOriginalName();
-                $img = Image::make($image->path());
-                $img->resize(750, 750, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(\base_path().'/public/images/galeri/'.$imgname)->filesize(); 
+                // $gambar = $request->gambar;
+                $imgname = time()."_".$image->getClientOriginalName();
+                $image->move(\base_path() ."/public/images/galeri", $imgname);
                 $data[] = $imgname;  
             }
         }
@@ -103,11 +99,8 @@ class GaleriController extends Controller
             if($request->hasfile('gambar')){
                 foreach($request->file('gambar') as $image)
                 {                 
-                    $imgname =time()."_".$image->getClientOriginalName();
-                    $img = Image::make($image->path());
-                    $img->resize(750, 750, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save(\base_path().'/public/images/galeri/'.$imgname)->filesize(); 
+                    $imgname =$image->getClientOriginalName();
+                    $image->move(\base_path() ."/public/images/galeri", $imgname);
                     $update_gambar[] = $imgname;  
                 }
                 $update['gambar'] = json_encode($update_gambar);
