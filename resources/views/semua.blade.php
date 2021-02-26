@@ -55,6 +55,7 @@
                     artikel</a>
             </div>
         </div>
+        @if ($ada > 1)
         <div class="bagian">
             <div class="row">
                 @foreach ($data as $da)
@@ -74,6 +75,7 @@
                 @endforeach
             </div>
         </div>
+        @endif
         {{-- BLOG END --}}
         @else
         <div class="text-3 text-secondary text-center mt-5 mb-5">Blog tidak tersedia</div>

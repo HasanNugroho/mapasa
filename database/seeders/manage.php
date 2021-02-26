@@ -33,8 +33,8 @@ class manage extends Seeder
         $store->each(function ($store) {
             DB::table('manages')->insert($store);
         });
-        File::deleteDirectory(public_path('images/blog'));
-        File::deleteDirectory(public_path('images/galeri'));
-        File::deleteDirectory(public_path('images/kegiatan'));
+        // File::deleteDirectory(public_path('images/blog/'));
+        // File::deleteDirectory(public_path('images/galeri/'));
+        // File::deleteDirectory(public_path('images/kegiatan/'));
     }
 }

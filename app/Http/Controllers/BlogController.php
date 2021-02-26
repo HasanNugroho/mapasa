@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
+use Intervention\Image\ImageManagerStatic as Image;
 class BlogController extends Controller
 {
     public function index()
@@ -29,13 +30,16 @@ class BlogController extends Controller
 
         if($request->hasfile('foto'))
         {
-            $fotoutama = $request->foto;
-            $nama_foto =time()."_".$fotoutama->getClientOriginalName();
-            $fotoutama->move(\base_path() ."/public/images/blog", $nama_foto);
+            $gambar = $request->foto;
+            $fotoutama =time()."_".$gambar->getClientOriginalName();
+            $img = Image::make($gambar->path());
+            $img->resize(750, 750, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(\base_path().'/public/images/blog/'.$fotoutama)->filesize(); 
         }
         // dd($request);
         blog::create([
-            'foto' => $nama_foto,
+            'foto' => $fotoutama,
             'title' => $request->title,
             'author' => Auth::user()->name,
             'slug' => Str::slug($request->title),
@@ -70,11 +74,14 @@ class BlogController extends Controller
         if ($request->file('foto')) {
             File::delete(\base_path() .'/public/images/blog/'.$edit_blog->foto);
             
-            $fotoutama = $request->foto;
-            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
-            $fotoutama->move(\base_path() ."/public/images/blog", $nama_foto);
+            $gambar = $request->foto;
+            $fotoutama =time()."_".$gambar->getClientOriginalName();
+            $img = Image::make($gambar->path());
+            $img->resize(750, 750, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(\base_path().'/public/images/blog/'.$fotoutama)->filesize(); 
 
-            $update['foto'] = $nama_foto;
+            $update['foto'] = $fotoutama;
         }
 
         if ($request->artikel) {

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use File;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ManageController extends Controller
 {
@@ -36,10 +37,14 @@ class ManageController extends Controller
             if($request->file('gambar') != "jumbotron.svg"){
                 File::delete(\base_path() .'/public/images/manage/'.$edit_jumbotron->gambar);
             }
-            $fotoutama = $request->gambar;
-            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
-            $fotoutama->move(\base_path() ."/public/images/manage", $nama_foto);   
-            $update['gambar'] = $nama_foto;
+            $gambar = $request->gambar;
+            $fotoutama =time()."_".$gambar->getClientOriginalName();
+            $img = Image::make($gambar->path());
+            $img->resize(750, 750, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(\base_path().'/public/images/manage/'.$fotoutama)->filesize(); 
+
+            $update['gambar'] = $fotoutama;
         }
 
         $update['deskripsi'] = $request->deskripsi;

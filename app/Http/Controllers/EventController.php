@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
+use Intervention\Image\ImageManagerStatic as Image;
+
 class EventController extends Controller
 {
     public function index()
@@ -29,9 +31,12 @@ class EventController extends Controller
 
         if($request->hasfile('pamflet'))
         {
-            $fotoutama = $request->pamflet;
-            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
-            $fotoutama->move(\base_path() ."/public/images/event", $nama_foto);
+            $gambar = $request->pamflet;
+            $nama_foto =time()."_".$gambar->getClientOriginalName();
+            $img = Image::make($gambar->path());
+            $img->resize(750, 750, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(\base_path().'/public/images/event/'.$nama_foto)->filesize(); 
         }
         if($request->kegiatan){
             foreach ($request->kegiatan as $key => $value) {
@@ -96,9 +101,13 @@ class EventController extends Controller
         if ($request->file('pamflet')) {
             File::delete(\base_path() .'/public/images/event/'.$edit_event->pamflet);
             
-            $fotoutama = $request->pamflet;
-            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
-            $fotoutama->move(\base_path() ."/public/images/event", $nama_foto);            
+            $gambar = $request->pamflet;
+            $nama_foto =time()."_".$gambar->getClientOriginalName();
+            $img = Image::make($gambar->path());
+            $img->resize(750, 750, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(\base_path().'/public/images/event/'.$nama_foto)->filesize(); 
+
             $update['pamflet'] = $nama_foto;
         }
 

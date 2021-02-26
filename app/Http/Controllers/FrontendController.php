@@ -60,11 +60,17 @@ class FrontendController extends Controller
 
     public function semua_blog()
     {
-        $preview = blog::latest()->first();
-        $data = blog::where('id', '!=' , $preview->id)->get();
         $ada = blog::all()->count();
+        $preview = blog::latest()->first();
+        $tampil = [];
+        if ($ada >= 2) {
+            $data = blog::where('id', '!=' , $preview->id)->get();
+        }else{
+            $data = null;
+        }
+        $tampil =['ada', 'preview', 'jenis', 'data'];
         $jenis = "Blog";
-        return view('semua', compact('data', 'jenis', 'preview', 'ada'));
+        return view('semua')->with(compact($tampil));
     }
     public function semua_kegiatan()
     {

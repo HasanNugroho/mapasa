@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
 use File;
+use Intervention\Image\ImageManagerStatic as Image;
+
 class AdminController extends Controller
 {
     public function index()
@@ -51,11 +53,15 @@ class AdminController extends Controller
                 File::delete(\base_path() .'/public/images/admins/'.Auth::user()->foto);
             }
                 //delete old image
-            $fotoutama = request()->file('foto');
-            $nama_foto = time()."_".$fotoutama->getClientOriginalName();
-            $fotoutama->move(\base_path() ."/public/images/admins", $nama_foto);   
-            $data['foto'] = $nama_foto;
-        }
+                
+                $gambar = request()->file('foto');
+                $fotoutama =time()."_".$gambar->getClientOriginalName();
+                $img = Image::make($gambar->path());
+                $img->resize(750, 750, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(\base_path().'/public/images/admins/'.$fotoutama)->filesize(); 
+                $data['foto'] = $fotoutama;
+            }
 
         if (request('password')) {
             if (Hash::check(request('old_password'), Auth::user()->password)) {
