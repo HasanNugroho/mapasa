@@ -26,14 +26,14 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
         </div>
-        @if ($galeri->link)
+        {{-- @if ($galeri->link)
         <div class="bagian-blog">
             <div id="linkto" class="text-4 mb-1">Jika ingin download atau lihat foto. Akses link dibawah:</div>
             <a href="{{$galeri->link}}" for="linkto" target="_blank"
                 class="btn btn-md btn-primary te
                 xt-4 mt-2">Akses</a>
         </div>
-        @endif
+        @endif --}}
         @else
         <div class="d-flex align-items-center mb-3">
             <a href="{{route('landing')}}"><span class="iconify icon-prev" data-icon="carbon:previous-filled"
