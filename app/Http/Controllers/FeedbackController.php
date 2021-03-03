@@ -19,7 +19,7 @@ class FeedbackController extends Controller
             'pesan' => 'required',
         ]);
         if($request->nama == null){
-            $store['nama'] = 'Anonymus';
+            $store['nama'] = '-';
         }else{
             $request->validate([
                 'nama' => 'required',
