@@ -238,7 +238,7 @@ return [
             'text'        => 'Dashboard',
             'url'         => 'dashboard',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
-            'icon_color'  => 'dark',
+            'icon_color'  => 'light',
         ],
         [
             'text'        => 'Agenda Mendatang',
@@ -279,6 +279,8 @@ return [
         [
             'text'    => 'Web Manage',
             'icon'    => 'fas fa-fw fa-cog',
+            'icon_color'    =>  'light',
+            'url'  => '#',
             'submenu' => [
                 [
                     'text' => 'Jumbotron',
@@ -290,7 +292,7 @@ return [
                     'text' => 'Sejarah',
                     'url'  => 'dashboard/web/sejarah',
                     'icon' => 'fas fa-fw fa-history',
-                    'icon_color'  => 'dark',
+                    'icon_color'  => 'secondary',
                 ],
             ],
         ],
